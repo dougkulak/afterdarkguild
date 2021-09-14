@@ -1,0 +1,15 @@
+{
+  "name": "afterdarkguild",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "description": "Website for After Dark guild on WoW TBC Classic US-Grobbulus Server",
+  "keywords": ["wow","tbc","guild","after dark"],
+  "license": "MIT",
+  "author": {
+    "name": "Doug Kulak",
+    "email": "dougkulak@gmail.com"
+  }
+}

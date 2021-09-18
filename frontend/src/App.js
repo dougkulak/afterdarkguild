@@ -1,16 +1,28 @@
-import React from 'react';
-import {Typography} from '@material-ui/core';
-import {ThemeProvider} from '@material-ui/core/styles';
+import React, {useState} from 'react';
 import theme from './theme';
 import './App.css';
 import Layout from './Layout';
+import {ThemeProvider, Typography} from '@mui/material';
+import {BrowserRouter} from 'react-router-dom';
 
 function App() {
+  const [themeData, setThemeData] = useState(theme);
+
+  const updateThemePrimaryColor = (color) => {
+    setThemeData((prevState) => {
+      let newState = {...prevState};
+      newState.palette.primary.main = color;
+      return newState;
+    });
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Typography>Welcome to After Dark Guild</Typography>
-      </Layout>
+    <ThemeProvider theme={themeData}>
+      <BrowserRouter>
+        <Layout setThemeColor={updateThemePrimaryColor}>
+          <Typography paragraph>Welcome to After Dark Guild</Typography>
+        </Layout>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

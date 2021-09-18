@@ -4,6 +4,7 @@ import {
   races,
   ranks,
   recruitStatuses,
+  specs,
   teams,
 } from '../config/config';
 
@@ -40,8 +41,11 @@ const data = {
       rank: ranks.RAIDLEADER,
       race: races.HUMAN,
       class: classes.WARRIOR,
+      spec: specs.WARRIOR_PROT,
       profession1: professions.LEATHERWORKING,
+      profession1skill: 375,
       profession2: null,
+      profession2skill: null,
       notes: 'Rainbow Team Leader',
     },
   ],

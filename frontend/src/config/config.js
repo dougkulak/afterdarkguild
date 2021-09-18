@@ -1,8 +1,8 @@
 export const settings = {
   drawerWidth: 240,
-  showWelcomeEditHelp: true,
-  showRulesEditHelp: true,
-  showRosterEditHelp: true,
+  showWelcomeEditHelp: false,
+  showRulesEditHelp: false,
+  showRosterEditHelp: false,
 };
 
 export const classes = {
@@ -15,6 +15,48 @@ export const classes = {
   MAGE: 'Mage',
   HUNTER: 'Hunter',
   PRIEST: 'Priest',
+};
+
+export const classColors = {
+  SHAMAN: '#0070DD',
+  WARRIOR: '#C69B6D',
+  ROGUE: '#FFF468',
+  PALADIN: '#F48CBA',
+  DRUID: '#FF7C0A',
+  WARLOCK: '#8788EE',
+  MAGE: '#3FC7EB',
+  HUNTER: '#AAD372',
+  PRIEST: '#FFFFFF',
+};
+
+export const specs = {
+  SHAMAN_ENHANCE: 'Enhance',
+  SHAMAN_RESTO: 'Resto',
+  SHAMAN_ELE: 'Ele',
+  ROGUE_COMBAT: 'Combat',
+  ROGUE_ASS: 'Assassin',
+  ROGUE_SUB: 'Sub',
+  PALADIN_RET: 'Ret',
+  PALADIN_HOLY: 'Holy',
+  PALADIN_PROT: 'Prot',
+  DRUID_FERALDPS: 'Feral DPS',
+  DRUID_FERALTANK: 'Feral Tank',
+  DRUID_BAL: 'Balance',
+  WARLOCK_DEST: 'Dest',
+  WARLOCK_DEMO: 'Demo',
+  WARLOCK_AFF: 'Aff',
+  MAGE_FIRE: 'Fire',
+  MAGE_FROST: 'Frost',
+  MAGE_ARCANE: 'Arcane',
+  HUNTER_BM: 'BM',
+  HUNTER_SURV: 'Survival',
+  HUNTER_MARK: 'Mark',
+  PRIEST_HOLY: 'Holy',
+  PRIEST_DISC: 'Disc',
+  PRIEST_SHADOW: 'SHadow',
+  WARRIOR_FURY: 'Fury',
+  WARRIOR_ARMS: 'Arms',
+  WARRIOR_PROT: 'Prot',
 };
 
 export const races = {

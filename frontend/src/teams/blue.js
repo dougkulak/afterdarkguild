@@ -4,6 +4,7 @@ import {
   races,
   ranks,
   recruitStatuses,
+  specs,
   teams,
 } from '../config/config';
 
@@ -35,13 +36,29 @@ const data = {
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
   players: [
     {
+      name: 'Trazick',
+      team: teams.BLUE,
+      rank: ranks.GM,
+      race: races.HUMAN,
+      class: classes.MAGE,
+      spec: specs.MAGE_FROST,
+      profession1: professions.LEATHERWORKING,
+      profession1skill: 375,
+      profession2: professions.ENCHANTING,
+      profession2skill: 375,
+      notes: 'Blue Team Leader',
+    },
+    {
       name: 'Norrie',
       team: teams.BLUE,
       rank: ranks.OVERLORD,
       race: races.HUMAN,
       class: classes.WARRIOR,
+      spec: specs.WARRIOR_PROT,
       profession1: professions.LEATHERWORKING,
+      profession1skill: 375,
       profession2: professions.ENCHANTING,
+      profession2skill: 375,
       notes: 'Blue Team Leader',
     },
   ],

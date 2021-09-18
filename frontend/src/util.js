@@ -1,5 +1,6 @@
 import {useTheme} from '@mui/material/styles';
 import {useMediaQuery} from '@mui/material';
+import {classColors} from './config/config';
 
 export const useWidth = () => {
   const theme = useTheme();
@@ -30,4 +31,9 @@ export const getPositionOfOccurrence = (string, subString, index) => {
   const len = string.split(subString, index).join(subString).length;
   if (len === string.length) return -1;
   return len;
+};
+
+export const colorTextByClass = (text, playerClass) => {
+  const key = playerClass.toUpperCase();
+  return <span style={{color: classColors[key]}}>{text}</span>;
 };

@@ -4,6 +4,7 @@ import {
   races,
   ranks,
   recruitStatuses,
+  specs,
   teams,
 } from '../config/config';
 
@@ -119,8 +120,11 @@ const data = {
       rank: ranks.OFFICER,
       race: races.HUMAN,
       class: classes.WARRIOR,
+      spec: specs.WARRIOR_FURY,
       profession1: professions.LEATHERWORKING,
+      profession1skill: 375,
       profession2: professions.ENCHANTING,
+      profession2skill: 375,
       notes: 'Emerald Team Leader',
     },
     {
@@ -129,8 +133,11 @@ const data = {
       rank: ranks.RAIDLEADER,
       race: races.HUMAN,
       class: classes.ROGUE,
+      spec: specs.ROGUE_COMBAT,
       profession1: professions.ENGINEERING,
+      profession1skill: 375,
       profession2: professions.ENCHANTING,
+      profession2skill: 375,
       notes: 'Emerald Team Leader',
     },
     {
@@ -139,8 +146,11 @@ const data = {
       rank: ranks.RAIDER,
       race: races.DRAENEI,
       class: classes.SHAMAN,
+      spec: specs.SHAMAN_ENHANCE,
       profession1: professions.LEATHERWORKING,
+      profession1skill: 375,
       profession2: professions.ENCHANTING,
+      profession2skill: 375,
       notes: 'Webmaster',
     },
   ],

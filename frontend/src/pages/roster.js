@@ -22,7 +22,7 @@ import Box from '@mui/material/Box';
 import {Info, Search as SearchIcon} from '@mui/icons-material';
 import {getRaidTeamDataByName} from '../Layout';
 import {settings, teams} from '../config/config';
-import {slugify} from '../util';
+import {colorTextByClass, slugify} from '../util';
 import Code from '../components/Code';
 
 const RosterPage = ({team, page}) => {
@@ -141,7 +141,9 @@ const RosterPage = ({team, page}) => {
           return (
             <ListItem key={player.name}>
               <ListItemAvatar>
-                <Avatar />
+                <Avatar
+                  src={`/icons/classicon_${player.class.toLowerCase()}.jpg`}
+                />
               </ListItemAvatar>
               <ListItemText
                 primary={
@@ -173,12 +175,24 @@ const RosterPage = ({team, page}) => {
                       component="span"
                       variant="body2"
                       color="text.primary">
-                      {player.race} {player.class}
+                      {player.race}{' '}
+                      {colorTextByClass(
+                        `${player.spec} ${player.class}`,
+                        player.class
+                      )}
                     </Typography>
                     <> &nbsp;|&nbsp; </>
-                    {player.profession1 || <> &mdash; </>}
+                    {player.profession1 ? (
+                      `${player.profession1} (${player.profession1skill})`
+                    ) : (
+                      <> &mdash; </>
+                    )}
                     {' / '}
-                    {player.profession2 || <> &mdash; </>}
+                    {player.profession2 ? (
+                      `${player.profession2} (${player.profession2skill})`
+                    ) : (
+                      <> &mdash; </>
+                    )}
                     <br />
                     <Typography variant={'caption'} color={'textSecondary'}>
                       {player.notes}

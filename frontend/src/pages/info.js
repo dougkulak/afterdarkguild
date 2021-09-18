@@ -1,15 +1,16 @@
 import React from 'react';
 import {Alert, AlertTitle, Divider, Grid, Typography} from '@mui/material';
 import {settings, teams} from '../config/config';
-import {slugify} from '../util';
+import {slugify, useWidth} from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
 import {raidTeams} from '../config/teams';
 import TeamCard from '../components/TeamCard';
+import {isWidthDown, isWidthUp} from '@mui/material/Hidden/withWidth';
 
 const InfoPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
-
+  const width = useWidth();
   return (
     <div>
       {settings.showWelcomeEditHelp && team.name !== teams.ALL && (
@@ -27,6 +28,18 @@ const InfoPage = ({team, page}) => {
             <Divider />
           </Box>
         </React.Fragment>
+      )}
+
+      {!isAll && isWidthDown('md', width) && (
+        <Box mb={3}>
+          <TeamCard team={team} />
+        </Box>
+      )}
+
+      {!isAll && isWidthUp('md', width) && (
+        <Box sx={{float: 'right', minWidth: 250}} ml={3} mb={3}>
+          <TeamCard team={team} />
+        </Box>
       )}
 
       <Typography variant={'h6'}>

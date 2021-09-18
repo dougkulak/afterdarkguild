@@ -2,7 +2,6 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import logoWhite from './afterdarkguild-logo-white.svg';
-import logo from './afterdarkguild-logo.svg';
 import {Divider} from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -50,7 +49,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
         }}>
         <Toolbar>
           <img
-            src={isWidthDown('sm', width) ? logoWhite : logo}
+            src={isWidthDown('sm', width) ? logoWhite : logoWhite}
             className={classes.logo}
             alt="After Dark Guild"
             onClick={handleLogoClick}

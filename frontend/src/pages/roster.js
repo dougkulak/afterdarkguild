@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
+  Alert,
+  AlertTitle,
   Avatar,
+  Divider,
   FormControl,
   InputAdornment,
   InputLabel,
@@ -18,9 +21,13 @@ import {useTheme} from '@mui/styles';
 import Box from '@mui/material/Box';
 import {Info, Search as SearchIcon} from '@mui/icons-material';
 import {getRaidTeamDataByName} from '../Layout';
+import {settings, teams} from '../config/config';
+import {slugify} from '../util';
+import Code from '../components/Code';
 
 const RosterPage = ({team, page}) => {
   const theme = useTheme();
+  const isAll = team.name === teams.ALL;
 
   const fullTeamRoster = getRosterForTeam(team.name);
 
@@ -35,13 +42,42 @@ const RosterPage = ({team, page}) => {
     return getRaidTeamDataByName(team).color;
   };
 
-  useEffect(() => {
-    const cleanup = (val) => val.trim().toLowerCase();
+  const cleanup = (val) => {
+    if (!val) return '';
+    return val.trim().toLowerCase();
+  };
 
+  const doKeywordsMatchPlayer = (player, keywords) => {
+    const nameMatches = cleanup(player.name).includes(cleanup(keywords));
+    const teamMatches = cleanup(player.team).includes(cleanup(keywords));
+    const rankMatches = cleanup(player.rank).includes(cleanup(keywords));
+    const raceMatches = cleanup(player.race).includes(cleanup(keywords));
+    const classMatches = cleanup(player.class).includes(cleanup(keywords));
+    const prof1Matches = cleanup(player.profession1).includes(
+      cleanup(keywords)
+    );
+    const prof2Matches = cleanup(player.profession2).includes(
+      cleanup(keywords)
+    );
+    const notesMatches = cleanup(player.notes).includes(cleanup(keywords));
+
+    return (
+      nameMatches ||
+      teamMatches ||
+      rankMatches ||
+      raceMatches ||
+      classMatches ||
+      prof1Matches ||
+      prof2Matches ||
+      notesMatches
+    );
+  };
+
+  useEffect(() => {
     setRoster(
-      fullTeamRoster.filter((x) =>
+      fullTeamRoster.filter((player) =>
         keywords.trim().length > 0
-          ? cleanup(x.name).includes(cleanup(keywords))
+          ? doKeywordsMatchPlayer(player, keywords)
           : true
       )
     );
@@ -49,7 +85,29 @@ const RosterPage = ({team, page}) => {
 
   return (
     <div>
-      <Box>
+      {settings.showRosterEditHelp && team.name !== teams.ALL && (
+        <React.Fragment>
+          <Alert severity="info">
+            <AlertTitle>Attention: Team Leaders</AlertTitle>
+            This should always be kept up-to-date to reflect current team
+            members.
+            <br />
+            <br />
+            To change the roster, open{' '}
+            <strong>/frontend/src/teams/{slugify(team.name)}.js</strong> and
+            edit the <Code>players</Code> key.
+          </Alert>
+          <Box py={3}>
+            <Divider />
+          </Box>
+        </React.Fragment>
+      )}
+
+      <Typography variant={'h6'} gutterBottom>
+        {isAll ? 'Guild' : `${team.name} Team`} Roster ({roster.length})
+      </Typography>
+
+      <Box pt={2}>
         <FormControl fullWidth>
           <InputLabel htmlFor="outlined-adornment-amount">
             Player Filter
@@ -57,6 +115,9 @@ const RosterPage = ({team, page}) => {
           <OutlinedInput
             id="outlined-adornment-amount"
             value={keywords}
+            placeholder={
+              'Search name, team, rank, race, class, profession, and notes'
+            }
             onChange={handleKeywordsChange}
             startAdornment={
               <InputAdornment position="start">

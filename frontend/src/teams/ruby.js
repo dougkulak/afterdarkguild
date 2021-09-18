@@ -1,44 +1,50 @@
-import {classes, professions, races, ranks, teams} from '../config/config';
-
-export const description = 'Loot Council';
-
-export const players = [
-  {
-    name: 'RubyPlayer1',
-    team: teams.RUBY,
-    rank: ranks.RAIDLEADER,
-    race: races.HUMAN,
-    class: classes.WARRIOR,
-    profession1: professions.LEATHERWORKING,
-    profession2: null,
-    notes: 'Ruby Team Leader',
-  },
-];
-
-export const information = (
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque dolorum
-      enim, et eveniet, excepturi expedita illo in inventore laboriosam maxime
-      minus molestias nihil, perspiciatis quis similique temporibus vel
-      veritatis.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-      assumenda at consequuntur eligendi et expedita fugit in iure, laudantium
-      nisi omnis quaerat veritatis voluptatum. Facere modi nobis pariatur
-      placeat. Suscipit.
-    </p>
-  </div>
-);
-
-export const rules = ['Be nice.', 'Be punctual.', 'Have fun.'];
+import {
+  classes,
+  professions,
+  races,
+  ranks,
+  recruitStatuses,
+  teams,
+} from '../config/config';
 
 const data = {
-  description,
-  players,
-  information,
-  rules,
+  name: 'Ruby',
+  type: 'Semi-Hardcore',
+  schedule1: 'Wed/Thu/(Flex Mon)',
+  schedule2: '6:00P-9:00P ST',
+  leaders: ['RubyPlayer1'],
+  recruitStatus: recruitStatuses.OPEN,
+  recruitNeeds: 'Standbys',
+  description: 'Loot Council',
+  information: (
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque
+        dolorum enim, et eveniet, excepturi expedita illo in inventore
+        laboriosam maxime minus molestias nihil, perspiciatis quis similique
+        temporibus vel veritatis.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        assumenda at consequuntur eligendi et expedita fugit in iure, laudantium
+        nisi omnis quaerat veritatis voluptatum. Facere modi nobis pariatur
+        placeat. Suscipit.
+      </p>
+    </div>
+  ),
+  rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+  players: [
+    {
+      name: 'RubyPlayer1',
+      team: teams.RUBY,
+      rank: ranks.RAIDLEADER,
+      race: races.HUMAN,
+      class: classes.WARRIOR,
+      profession1: professions.LEATHERWORKING,
+      profession2: null,
+      notes: 'Ruby Team Leader',
+    },
+  ],
 };
 
 export default data;

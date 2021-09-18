@@ -9,9 +9,10 @@ import {
   CardHeader,
   Chip,
   Stack,
+  Tooltip,
 } from '@mui/material';
 import {styled} from '@mui/styles';
-import {People} from '@mui/icons-material';
+import {MilitaryTech, People} from '@mui/icons-material';
 import {recruitStatuses} from '../config/config';
 import {defaultPageData} from '../Layout';
 import {slugify} from '../util';
@@ -24,7 +25,7 @@ const Item = styled(Box)(({theme}) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function TeamActionCard({team}) {
+export default function TeamCard({team}) {
   const history = useHistory();
 
   const handleCardClick = () => {
@@ -41,7 +42,7 @@ export default function TeamActionCard({team}) {
             </div>
           )}
         />
-        <CardContent sx={{minHeight: 150}}>
+        <CardContent>
           <Typography
             gutterBottom
             variant="h6"
@@ -49,10 +50,30 @@ export default function TeamActionCard({team}) {
             sx={{color: team.color}}>
             {team.name}
           </Typography>
-          <Chip size={'small'} label={team.type} sx={{mb: 1, border: 'none'}} />
-          <Typography variant="body2" color="text.secondary">
-            {team.description}
+          <Chip
+            size={'small'}
+            label={team.type}
+            sx={{mb: 1, border: 'none', cursor: 'pointer'}}
+          />
+          <br />
+          <Typography variant="caption" color="text.secondary">
+            {team.schedule1}
           </Typography>
+          <br />
+          <Typography variant="caption" color="text.secondary">
+            {team.schedule2}
+          </Typography>
+          <br />
+          <Typography variant="caption" color="text.secondary">
+            <i>{team.description}</i>
+          </Typography>
+          <br />
+          <Box mt={1}>
+            <Typography variant="caption" color="text.secondary">
+              <MilitaryTech fontSize={'small'} sx={{verticalAlign: 'top'}} />
+              {team.leaders.join(', ')}
+            </Typography>
+          </Box>
         </CardContent>
         <CardActions style={{justifyContent: 'flex-start'}}>
           <Stack direction="row" spacing={0}>
@@ -62,21 +83,24 @@ export default function TeamActionCard({team}) {
                 icon={<People />}
                 label={team.players.length}
                 variant="outlined"
-                sx={{ml: 1, mb: 1, mr: 0, pl: 1}}
+                sx={{ml: 1, mb: 1, mr: 0, pl: 1, cursor: 'pointer'}}
               />
             </Item>
             <Item>
-              <Chip
-                size={'small'}
-                label={team.recruitStatus}
-                variant="outlined"
-                color={
-                  team.recruitStatus === recruitStatuses.CLOSED
-                    ? 'error'
-                    : 'success'
-                }
-                sx={{ml: 0, mb: 1, border: 'none'}}
-              />
+              <Tooltip
+                title={team.recruitNeeds ? 'Need: ' + team.recruitNeeds : ''}>
+                <Chip
+                  size={'small'}
+                  label={`${team.recruitStatus}`}
+                  variant="outlined"
+                  color={
+                    team.recruitStatus === recruitStatuses.CLOSED
+                      ? 'error'
+                      : 'success'
+                  }
+                  sx={{ml: 0, mb: 1, border: 'none', cursor: 'pointer'}}
+                />
+              </Tooltip>
             </Item>
           </Stack>
         </CardActions>

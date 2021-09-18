@@ -1,44 +1,50 @@
-import {classes, professions, races, ranks, teams} from '../config/config';
-
-export const description = 'Guided EPGP';
-
-export const players = [
-  {
-    name: 'AmethystPlayer1',
-    team: teams.AMETHYST,
-    rank: ranks.RAIDLEADER,
-    race: races.HUMAN,
-    class: classes.WARRIOR,
-    profession1: professions.LEATHERWORKING,
-    profession2: null,
-    notes: 'Amethyst Team Leader',
-  },
-];
-
-export const information = (
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque dolorum
-      enim, et eveniet, excepturi expedita illo in inventore laboriosam maxime
-      minus molestias nihil, perspiciatis quis similique temporibus vel
-      veritatis.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-      assumenda at consequuntur eligendi et expedita fugit in iure, laudantium
-      nisi omnis quaerat veritatis voluptatum. Facere modi nobis pariatur
-      placeat. Suscipit.
-    </p>
-  </div>
-);
-
-export const rules = ['Be nice.', 'Be punctual.', 'Have fun.'];
+import {
+  classes,
+  professions,
+  races,
+  ranks,
+  recruitStatuses,
+  teams,
+} from '../config/config';
 
 const data = {
-  description,
-  players,
-  information,
-  rules,
+  name: 'Amethyst',
+  type: 'Hardcore',
+  schedule1: 'Fri/Sat',
+  schedule2: '9:30P-12:30A ST',
+  leaders: ['AmethystPlayer1'],
+  recruitStatus: recruitStatuses.OPEN,
+  recruitNeeds: 'Shadow Priest, Healer, Resto & Ele Shaman',
+  description: 'Guided EPGP',
+  information: (
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque
+        dolorum enim, et eveniet, excepturi expedita illo in inventore
+        laboriosam maxime minus molestias nihil, perspiciatis quis similique
+        temporibus vel veritatis.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        assumenda at consequuntur eligendi et expedita fugit in iure, laudantium
+        nisi omnis quaerat veritatis voluptatum. Facere modi nobis pariatur
+        placeat. Suscipit.
+      </p>
+    </div>
+  ),
+  rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+  players: [
+    {
+      name: 'AmethystPlayer1',
+      team: teams.AMETHYST,
+      rank: ranks.RAIDLEADER,
+      race: races.HUMAN,
+      class: classes.WARRIOR,
+      profession1: professions.LEATHERWORKING,
+      profession2: null,
+      notes: 'Amethyst Team Leader',
+    },
+  ],
 };
 
 export default data;

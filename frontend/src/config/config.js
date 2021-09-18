@@ -2,6 +2,7 @@ export const settings = {
   drawerWidth: 240,
   showWelcomeEditHelp: true,
   showRulesEditHelp: true,
+  showRosterEditHelp: true,
 };
 
 export const classes = {
@@ -32,6 +33,7 @@ export const professions = {
   SKINNING: 'Skinning',
   TAILORING: 'Tailoring',
   JEWELCRAFTING: 'Jewelcrafting',
+  ENGINEERING: 'Engineering',
   HERBALISM: 'Herbalism',
 };
 

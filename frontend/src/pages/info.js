@@ -5,7 +5,7 @@ import {slugify} from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
 import {raidTeams} from '../config/teams';
-import TeamActionCard from '../components/TeamActionCard';
+import TeamCard from '../components/TeamCard';
 
 const InfoPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
@@ -50,7 +50,7 @@ const InfoPage = ({team, page}) => {
               .filter((x) => x.name !== teams.ALL)
               .map((team) => (
                 <Grid key={team.name} item xs={12} sm={6} md={4} lg={3}>
-                  <TeamActionCard team={team} />
+                  <TeamCard team={team} />
                 </Grid>
               ))}
           </Grid>

@@ -5,46 +5,45 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {raidTeamPages, raidTeams} from './config';
+import {raidTeamPages} from './config/pages';
+import {raidTeams} from './config/teams';
 import {makeStyles} from '@mui/styles';
 import {useHistory} from 'react-router-dom';
 import {getPositionOfOccurrence, slugify, useWidth} from './util';
-import {Button, Divider, ToggleButton, ToggleButtonGroup} from '@mui/material';
+import {Button, ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
-import logo from './afterdarkguild-logo.svg';
-import logoWhite from './afterdarkguild-logo-white.svg';
+import {settings} from './config/config';
+import {Sidebar} from './Sidebar';
 
-const drawerWidth = 240;
+export const defaultRaidTeamData = raidTeams[0];
+export const defaultPageData = raidTeamPages[0];
 
 const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  logo: {
-    height: 35,
-  },
   raidTeamBar: {
     backgroundColor: `${theme.palette.raidToolbarBg} !important`,
   },
   raidTeamToolbar: {
+    paddingTop: theme.spacing(2),
     justifyContent: 'center',
     '& .MuiToggleButton-root': {
       color: 'white',
     },
+    [theme.breakpoints.down('md')]: {
+      paddingTop: theme.spacing(3),
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: theme.spacing(2),
+    },
   },
 }));
 
-const defaultRaidTeamData = raidTeams[0];
-const defaultPageData = raidTeamPages[0];
-
-const getRaidTeamDataByName = (name) => {
+export const getRaidTeamDataByName = (name) => {
   return (
     raidTeams.find((x) => slugify(x.name) === slugify(name)) ??
     defaultRaidTeamData
@@ -81,94 +80,64 @@ const getPageNameFromPath = () => {
   return window.location.pathname.substring(pos);
 };
 
-function Layout({setThemeColor, children}) {
+function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
   const classes = useStyles();
   const history = useHistory();
   const width = useWidth();
 
-  const [currentPageData, setCurrentPageData] = useState(defaultPageData);
-  const [currentRaidTeamData, setCurrentRaidTeamData] =
-    useState(defaultRaidTeamData);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const switchToRaidTeam = (team) => {
+  const switchToTeam = (team) => {
     setThemeColor(team.color);
-    history.push(`/${slugify(team.name)}/${slugify(currentPageData.name)}`);
-    setCurrentRaidTeamData(team);
+    history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+    setTeam(team);
   };
 
-  // const switchToPage = (page) => {
-  //   history.push(`/${slugify(currentRaidTeamData.name)}/${slugify(page.name)}`);
-  //   setCurrentPageData(page);
-  // };
+  const switchToPage = (page) => {
+    history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+    setPage(page);
+  };
 
   const handleRaidTeamButtonClick = (e) => {
     const raidTeamName = e.currentTarget.value;
-    switchToRaidTeam(getRaidTeamDataByName(raidTeamName));
+    switchToTeam(getRaidTeamDataByName(raidTeamName));
   };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <div>
-      <AppBar
-        elevation={0}
-        position="relative"
-        sx={{
-          width: {sm: `calc(100% - ${drawerWidth}px)`},
-        }}>
-        <Toolbar>
-          <img
-            src={isWidthDown('sm', width) ? logoWhite : logo}
-            className={classes.logo}
-            alt="After Dark Guild"
-          />
-        </Toolbar>
-      </AppBar>
-      <Divider />
-      <Box py={3}>
-        <Typography
-          variant={'h6'}
-          align={'center'}
-          style={{color: currentRaidTeamData.color}}>
-          {currentRaidTeamData.name} Team
-        </Typography>
-      </Box>
-      <Divider />
-      <List>
-        {raidTeamPages.map((x) => (
-          <ListItem button key={x.name}>
-            <ListItemIcon>{x.icon}</ListItemIcon>
-            <ListItemText primary={x.name} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
   useEffect(() => {
     const team = getDefaultRaidTeamData();
     const page = getDefaultPageData();
     setThemeColor(team.color);
-    setCurrentRaidTeamData(team);
-    setCurrentPageData(page);
-
+    setTeam(team);
+    setPage(page);
     history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
   }, []); //eslint-disable-line
 
-  if (!currentRaidTeamData || !currentPageData) return <React.Fragment />;
+  useEffect(() => {
+    return history.listen((location) => {
+      const team = getDefaultRaidTeamData();
+      const page = getDefaultPageData();
+      setThemeColor(team.color);
+      setTeam(team);
+      setPage(page);
+    });
+  }, [history]); //eslint-disable-line
+
+  if (!team || !page) return <React.Fragment />;
 
   return (
     <Box sx={{display: 'flex'}}>
       <CssBaseline />
+
       <AppBar
         elevation={0}
         position="fixed"
         sx={{
-          width: {sm: `calc(100% - ${drawerWidth}px)`},
-          ml: {sm: `${drawerWidth}px`},
+          width: {sm: `calc(100% - ${settings.drawerWidth}px)`},
+          ml: {sm: `${settings.drawerWidth}px`},
         }}>
         <Toolbar>
           <IconButton
@@ -180,14 +149,15 @@ function Layout({setThemeColor, children}) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" className={classes.title}>
-            {currentPageData.name}
+            {page.name}
           </Typography>
           <Button color="inherit">Apply</Button>
         </Toolbar>
       </AppBar>
+
       <Box
         component="nav"
-        sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+        sx={{width: {sm: settings.drawerWidth}, flexShrink: {sm: 0}}}
         aria-label="mailbox folders">
         <Drawer
           variant="temporary"
@@ -196,29 +166,46 @@ function Layout({setThemeColor, children}) {
           ModalProps={{keepMounted: true}}
           sx={{
             display: {xs: 'block', sm: 'none'},
-            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: settings.drawerWidth,
+            },
           }}>
-          {drawer}
+          <Sidebar
+            team={team}
+            page={page}
+            switchToPage={switchToPage}
+            switchToTeam={switchToTeam}
+          />
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
             display: {xs: 'none', sm: 'block'},
-            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: settings.drawerWidth,
+            },
           }}
           open>
-          {drawer}
+          <Sidebar
+            team={team}
+            page={page}
+            switchToPage={switchToPage}
+            switchToTeam={switchToTeam}
+          />
         </Drawer>
       </Box>
-      <Box component="main" sx={{flexGrow: 1, p: 3}}>
+
+      <Box component="main" sx={{flexGrow: 1, p: 0}}>
         <Toolbar />
         <Toolbar className={classes.raidTeamToolbar}>
           <ToggleButtonGroup
             size={'small'}
             orientation={isWidthDown('md', width) ? 'vertical' : 'horizontal'}
-            value={currentRaidTeamData.name}
+            value={team.name}
             exclusive
-            fullWidth={isWidthDown('md', width)}
+            fullWidth
             onChange={handleRaidTeamButtonClick}>
             {raidTeams.map((x) => (
               <ToggleButton
@@ -231,7 +218,7 @@ function Layout({setThemeColor, children}) {
             ))}
           </ToggleButtonGroup>
         </Toolbar>
-        <Box pt={2}>{children}</Box>
+        <Box p={3}>{children}</Box>
       </Box>
     </Box>
   );

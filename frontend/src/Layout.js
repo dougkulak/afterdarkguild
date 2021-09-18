@@ -97,10 +97,10 @@ function Layout({setThemeColor, children}) {
     setCurrentRaidTeamData(team);
   };
 
-  const switchToPage = (page) => {
-    history.push(`/${slugify(currentRaidTeamData.name)}/${slugify(page.name)}`);
-    setCurrentPageData(page);
-  };
+  // const switchToPage = (page) => {
+  //   history.push(`/${slugify(currentRaidTeamData.name)}/${slugify(page.name)}`);
+  //   setCurrentPageData(page);
+  // };
 
   const handleRaidTeamButtonClick = (e) => {
     const raidTeamName = e.currentTarget.value;

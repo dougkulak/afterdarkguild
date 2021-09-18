@@ -2,7 +2,7 @@ import {colors, createTheme, responsiveFontSizes} from '@mui/material';
 
 let theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'light',
     primary: {
       main: colors.blue[500],
     },

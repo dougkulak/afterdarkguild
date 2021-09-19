@@ -57,6 +57,7 @@ function App() {
                     frameBorder="0"
                     marginHeight="0"
                     marginWidth="0"
+                    id={'applyForm'}
                     style={{overflowY: 'hidden'}}
                     title={'After Dark Application Form'}>
                     Loading…

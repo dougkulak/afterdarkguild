@@ -47,6 +47,22 @@ function App() {
             <Route path={'/:team/roster'}>
               <RosterPage team={currentTeam} page={currentPage} />
             </Route>
+            <Route path={'/:team/apply'}>
+              <div style={{position: 'relative'}}>
+                <div style={{height: '100vh'}}>
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true"
+                    width="100%"
+                    height="2200"
+                    frameBorder="0"
+                    marginHeight="0"
+                    marginWidth="0"
+                    style={{overflowY: 'hidden'}}>
+                    Loading…
+                  </iframe>
+                </div>
+              </div>
+            </Route>
           </Switch>
         </Layout>
       </BrowserRouter>

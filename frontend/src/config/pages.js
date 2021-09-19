@@ -17,4 +17,8 @@ export const raidTeamPages = [
     name: 'Roster',
     icon: <RosterIcon />,
   },
+  {
+    name: 'Apply',
+    icon: <RosterIcon />,
+  },
 ];

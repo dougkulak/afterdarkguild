@@ -92,6 +92,7 @@ export const teams = {
 };
 
 export const pages = {
+  APPLY: 'Apply',
   RULES: 'Rules',
   INFO: 'Information',
   ROSTER: 'Roster',

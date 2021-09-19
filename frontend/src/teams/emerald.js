@@ -102,15 +102,6 @@ const data = {
         applications. So if you wish to play TBC and raid, the next two weeks
         will be very formative.
       </p>
-
-      <strong>Macros:</strong>
-      <pre>
-        {`/use Tainted Core
-/y <------- TAINTED CORE TO: %t ! ! !
-/s <------- TAINTED CORE TO: %t ! ! !
-/script SendChatMessage("!!! YOU HAVE THE CORE !!!", "WHISPER", nil, UnitName("target"));
-        `}
-      </pre>
     </div>
   ),
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],

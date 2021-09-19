@@ -1,9 +1,19 @@
 import {useHistory} from 'react-router-dom';
-import {slugify} from '../util';
+import {slugify, useWidth} from '../util';
 import {Button, Divider, Stack} from '@mui/material';
-import {pages, settings} from '../config/config';
+import {pages} from '../config/config';
 import React from 'react';
-import {styled} from '@mui/styles';
+import {makeStyles, styled} from '@mui/styles';
+import {isWidthDown} from '@mui/material/Hidden/withWidth';
+
+const useStyles = makeStyles((theme) => ({
+  active: {
+    '&.MuiButton-root': {
+      color: theme.palette.primary.contrastText,
+      borderColor: theme.palette.primary.contrastText,
+    },
+  },
+}));
 
 const Item = styled(Button)(({theme}) => ({
   ...theme.typography.body2,
@@ -14,36 +24,44 @@ const Item = styled(Button)(({theme}) => ({
 
 export function TeamNav({team, page}) {
   const history = useHistory();
+  const width = useWidth();
+  const classes = useStyles();
 
-  const gotoPage = (pageName) => {
+  const gotoTeamPage = (pageName) => {
     history.push(`/${slugify(team.name)}/${slugify(pageName)}`);
   };
 
   return (
     <Stack
-      direction="row"
-      divider={<Divider orientation="vertical" flexItem />}
-      spacing={2}>
+      direction={isWidthDown('md', width) ? 'column' : 'row'}
+      spacing={isWidthDown('md', width) ? 1 : 2}>
       <Item
-        variant={page.name === pages.INFO ? 'primary' : 'outlined'}
-        onClick={() => gotoPage(pages.INFO)}>
+        variant={'outlined'}
+        size={'small'}
+        className={page.name === pages.INFO ? classes.active : null}
+        onClick={() => gotoTeamPage(pages.INFO)}>
         {pages.INFO}
       </Item>
       <Item
-        variant={page.name === pages.RULES ? 'primary' : 'outlined'}
-        onClick={() => gotoPage(pages.RULES)}>
+        variant={'outlined'}
+        size={'small'}
+        className={page.name === pages.RULES ? classes.active : null}
+        onClick={() => gotoTeamPage(pages.RULES)}>
         {pages.RULES}
       </Item>
       <Item
-        variant={page.name === pages.ROSTER ? 'primary' : 'outlined'}
-        onClick={() => gotoPage(pages.ROSTER)}>
+        variant={'outlined'}
+        size={'small'}
+        className={page.name === pages.ROSTER ? classes.active : null}
+        onClick={() => gotoTeamPage(pages.ROSTER)}>
         {pages.ROSTER}
       </Item>
       <Item
         variant={'outlined'}
-        target={'_blank'}
-        href={settings.applyFormLink}>
-        Apply Now
+        size={'small'}
+        className={page.name === pages.APPLY ? classes.active : null}
+        onClick={() => gotoTeamPage(pages.APPLY)}>
+        {pages.APPLY}
       </Item>
     </Stack>
   );

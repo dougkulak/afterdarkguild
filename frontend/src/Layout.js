@@ -15,7 +15,7 @@ import {useHistory} from 'react-router-dom';
 import {getPositionOfOccurrence, slugify, useWidth} from './util';
 import {Button, ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
-import {settings} from './config/config';
+import {pages, settings} from './config/config';
 import {Sidebar} from './Sidebar';
 import {TeamNav} from './components/TeamNav';
 
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   raidTeamToolbar: {
     paddingTop: theme.spacing(2),
     justifyContent: 'center',
+
     '& .MuiToggleButton-root': {
       color: 'white',
     },
@@ -41,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       paddingTop: theme.spacing(2),
     },
+
+    padding: 0,
   },
 }));
 
@@ -114,7 +117,10 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
     setThemeColor(team.color);
     setTeam(team);
     setPage(page);
-    history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+
+    if (window.location.pathname === '/') {
+      history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+    }
   }, []); //eslint-disable-line
 
   useEffect(() => {
@@ -155,8 +161,7 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
           </Typography>
           <Button
             color="inherit"
-            target={'_blank'}
-            href={settings.applyFormLink}>
+            onClick={() => switchToPage({name: pages.APPLY})}>
             Apply Now
           </Button>
         </Toolbar>
@@ -209,7 +214,6 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
         <Toolbar className={classes.raidTeamToolbar}>
           <ToggleButtonGroup
             size={'small'}
-            orientation={isWidthDown('md', width) ? 'vertical' : 'horizontal'}
             value={team.name}
             exclusive
             fullWidth
@@ -220,7 +224,7 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
                 value={x.name}
                 label={x.name}
                 style={{backgroundColor: x.color}}>
-                {x.name}
+                {isWidthDown('md', width) ? <>&nbsp;</> : x.name}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>

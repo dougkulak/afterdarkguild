@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import theme from './theme';
 import './App.css';
 import Layout from './Layout';
 import {ThemeProvider} from '@mui/material';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, useHistory} from 'react-router-dom';
 import InfoPage from './pages/info';
 import RulesPage from './pages/rules';
 import RosterPage from './pages/roster';
@@ -15,6 +15,7 @@ const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
 
 function App() {
+  const history = useHistory();
   const [themeData, setThemeData] = useState(theme);
 
   const [currentTeam, setCurrentTeam] = useState(defaultRaidTeamData);
@@ -28,6 +29,13 @@ function App() {
       return newState;
     });
   };
+
+  useEffect(() => {
+    // fix bug with wowhead rewriteLinks not triggering on react page change
+    setTimeout(() => {
+      window.$WowheadPower.refreshLinks();
+    }, 0);
+  }, [currentTeam, currentPage, history]);
 
   return (
     <ThemeProvider theme={themeData}>

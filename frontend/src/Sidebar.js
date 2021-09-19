@@ -2,7 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import logoWhite from './afterdarkguild-logo-white.svg';
-import {Divider} from '@mui/material';
+import {Collapse, Divider} from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
@@ -16,6 +16,8 @@ import {makeStyles} from '@mui/styles';
 import {slugify, useWidth} from './util';
 import {useHistory} from 'react-router-dom';
 import {defaultPageData, defaultRaidTeamData} from './Layout';
+import {ExpandLess, ExpandMore} from '@mui/icons-material';
+import {useState} from 'react';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -30,6 +32,8 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
   const history = useHistory();
 
   //const handleRaidTeamPageClick = (e) => {};
+
+  const [open, setOpen] = useState(null);
 
   const handleLogoClick = () => {
     switchToTeam(defaultRaidTeamData);
@@ -67,14 +71,40 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
       <Divider />
       <List>
         {raidTeamPages.map((x) => (
-          <ListItem
-            button
-            key={x.name}
-            onClick={() => switchToPage(x)}
-            selected={x.name === page.name}>
-            <ListItemIcon>{x.icon}</ListItemIcon>
-            <ListItemText primary={x.name} />
-          </ListItem>
+          <React.Fragment key={x.name}>
+            <ListItem
+              button
+              onClick={() => {
+                if (x.children) {
+                  setOpen(open === x.name ? null : x.name);
+                }
+                switchToPage(x);
+              }}
+              selected={x.name === page.name}>
+              <ListItemIcon>{x.icon}</ListItemIcon>
+              <ListItemText primary={x.name} />
+              {x.children && (
+                <>{x.name === open ? <ExpandLess /> : <ExpandMore />}</>
+              )}
+            </ListItem>
+            {x.children && (
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {x.children.map((y) => (
+                    <ListItem
+                      button
+                      key={y.name}
+                      onClick={() => {
+                        switchToPage(y);
+                      }}
+                      selected={y.name === page.name}>
+                      <ListItemText primary={y.name} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
+            )}
+          </React.Fragment>
         ))}
       </List>
     </div>

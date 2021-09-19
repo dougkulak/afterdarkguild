@@ -47,7 +47,7 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Blue Team Leader',
+      notes: 'Guild Master, Blue Team Leader',
     },
     {
       name: 'Norrie',

@@ -18,6 +18,13 @@ const data = {
   recruitNeeds: 'Holy Paladin',
   description: 'Loot Council',
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
+  announcements: [
+    {
+      name: 'Announcement Name',
+      description: 'Lorem ipsum dolor sit amet.',
+      date: '9/18/2021',
+    },
+  ],
   information: (
     <div>
       <p>
@@ -143,7 +150,7 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Webmaster',
+      notes: 'Guild Webmaster',
     },
   ],
 };

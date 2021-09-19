@@ -158,6 +158,7 @@ const RosterPage = ({team, page}) => {
                     </Typography>
                   </React.Fragment>
                 }
+                secondaryTypographyProps={{component: 'div'}}
                 secondary={
                   <React.Fragment>
                     <Typography

@@ -1,6 +1,6 @@
 import {useHistory} from 'react-router-dom';
 import {slugify, useWidth} from '../util';
-import {Button, Divider, Stack} from '@mui/material';
+import {Button, Stack} from '@mui/material';
 import {pages} from '../config/config';
 import React from 'react';
 import {makeStyles, styled} from '@mui/styles';

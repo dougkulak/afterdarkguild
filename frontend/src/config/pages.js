@@ -2,6 +2,7 @@ import {
   Info as InfoIcon,
   People as RosterIcon,
   Rule as RulesIcon,
+  PostAdd as ApplyIcon,
 } from '@mui/icons-material';
 
 export const raidTeamPages = [
@@ -19,6 +20,6 @@ export const raidTeamPages = [
   },
   {
     name: 'Apply',
-    icon: <RosterIcon />,
+    icon: <ApplyIcon />,
   },
 ];

@@ -1,4 +1,5 @@
 import {
+  announcementTypes,
   classes,
   professions,
   races,
@@ -18,6 +19,12 @@ const data = {
   recruitNeeds: 'Shadow Priest, Healer, Resto & Ele Shaman',
   description: 'Guided EPGP',
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
+  announcements: [
+    {
+      type: announcementTypes.INFO,
+      content: 'This is a team-wide announcement.',
+    },
+  ],
   information: (
     <div>
       <p>

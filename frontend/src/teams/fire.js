@@ -18,6 +18,7 @@ const data = {
   recruitNeeds: 'Holy Priest, Resto Shaman, Holy Paladin',
   description: 'Guided EPGP',
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
+  announcements: [],
   information: (
     <div>
       <p>

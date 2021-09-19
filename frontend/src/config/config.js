@@ -1,8 +1,9 @@
 export const settings = {
-  drawerWidth: 240,
+  drawerWidth: 260,
   showWelcomeEditHelp: false,
   showRulesEditHelp: false,
   showRosterEditHelp: false,
+  showAnnouncementEditHelp: true,
   applyFormLink:
     'https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true',
 };
@@ -97,6 +98,7 @@ export const pages = {
   RULES: 'Rules',
   INFO: 'Information',
   ROSTER: 'Roster',
+  ANNOUNCEMENTS: 'Announcements',
 };
 
 export const ranks = {
@@ -112,4 +114,11 @@ export const ranks = {
 export const recruitStatuses = {
   OPEN: 'Open',
   CLOSED: 'Closed',
+};
+
+export const announcementTypes = {
+  INFO: 'info',
+  ERROR: 'error',
+  SUCCESS: 'success',
+  WARNING: 'warning',
 };

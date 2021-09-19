@@ -116,6 +116,7 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
 
   const switchToPage = (page) => {
     history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+    setMobileOpen(false);
     setPage(page);
   };
 

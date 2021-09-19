@@ -1,4 +1,5 @@
 import {
+  announcementTypes,
   classes,
   professions,
   races,
@@ -18,6 +19,14 @@ const data = {
   recruitNeeds: 'Exceptional Tryhards',
   description: 'Heavily-Guided EPGP',
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
+  announcements: [
+    {
+      type: announcementTypes.INFO,
+      title: 'New Guild Website!',
+      content:
+        'We have launched a new website for the guild to keep us more organized. Please direct any issues or feature requests to Shazzamy.',
+    },
+  ],
   information: (
     <div>
       <p>

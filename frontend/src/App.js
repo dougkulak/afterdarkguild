@@ -10,6 +10,7 @@ import RosterPage from './pages/roster';
 import {raidTeamPages} from './config/pages';
 import {raidTeams} from './config/teams';
 import {settings} from './config/config';
+import AnnouncementsPage from './pages/announcements';
 
 const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
@@ -49,6 +50,9 @@ function App() {
           <Switch>
             <Route path={'/:team/information'}>
               <InfoPage team={currentTeam} page={currentPage} />
+            </Route>
+            <Route path={'/:team/announcements'}>
+              <AnnouncementsPage team={currentTeam} page={currentPage} />
             </Route>
             <Route path={'/:team/rules'}>
               <RulesPage team={currentTeam} page={currentPage} />

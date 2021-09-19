@@ -2,11 +2,11 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import logoWhite from './afterdarkguild-logo-white.svg';
-import {Collapse, Divider} from '@mui/material';
+import {Badge, Collapse, Divider} from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import {settings} from './config/config';
+import {pages, settings} from './config/config';
 import {raidTeamPages} from './config/pages';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -18,6 +18,7 @@ import {useHistory} from 'react-router-dom';
 import {defaultPageData, defaultRaidTeamData} from './Layout';
 import {ExpandLess, ExpandMore} from '@mui/icons-material';
 import {useState} from 'react';
+import {getAnnouncementsForTeam} from './config/teams';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -41,6 +42,13 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
     history.push(
       `/${slugify(defaultRaidTeamData.name)}/${slugify(defaultPageData.name)}`
     );
+  };
+
+  const handleLinkClick = (page) => {
+    if (page.children) {
+      setOpen(open === page.name ? null : page.name);
+    }
+    switchToPage(page);
   };
 
   return (
@@ -70,42 +78,54 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
       </Box>
       <Divider />
       <List>
-        {raidTeamPages.map((x) => (
-          <React.Fragment key={x.name}>
-            <ListItem
-              button
-              onClick={() => {
-                if (x.children) {
-                  setOpen(open === x.name ? null : x.name);
-                }
-                switchToPage(x);
-              }}
-              selected={x.name === page.name}>
-              <ListItemIcon>{x.icon}</ListItemIcon>
-              <ListItemText primary={x.name} />
+        {raidTeamPages.map((x) => {
+          const numAnnouncements = getAnnouncementsForTeam(team.name).length;
+
+          return (
+            <React.Fragment key={x.name}>
+              <ListItem
+                button
+                onClick={() => handleLinkClick(x)}
+                selected={x.name === page.name}>
+                <ListItemIcon>{x.icon}</ListItemIcon>
+                <ListItemText
+                  primary={
+                    numAnnouncements && x.name === pages.ANNOUNCEMENTS ? (
+                      <Badge
+                        badgeContent={numAnnouncements}
+                        color="primary"
+                        style={{paddingRight: '8px'}}>
+                        {x.name}
+                      </Badge>
+                    ) : (
+                      x.name
+                    )
+                  }
+                />
+                {x.children && (
+                  <>{x.name === open ? <ExpandLess /> : <ExpandMore />}</>
+                )}
+              </ListItem>
               {x.children && (
-                <>{x.name === open ? <ExpandLess /> : <ExpandMore />}</>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {x.children.map((y) => (
+                      <ListItem
+                        button
+                        key={y.name}
+                        onClick={() => {
+                          switchToPage(y);
+                        }}
+                        selected={y.name === page.name}>
+                        <ListItemText primary={y.name} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
               )}
-            </ListItem>
-            {x.children && (
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {x.children.map((y) => (
-                    <ListItem
-                      button
-                      key={y.name}
-                      onClick={() => {
-                        switchToPage(y);
-                      }}
-                      selected={y.name === page.name}>
-                      <ListItemText primary={y.name} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            )}
-          </React.Fragment>
-        ))}
+            </React.Fragment>
+          );
+        })}
       </List>
     </div>
   );

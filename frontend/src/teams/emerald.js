@@ -1,4 +1,5 @@
 import {
+  announcementTypes,
   classes,
   professions,
   races,
@@ -20,9 +21,10 @@ const data = {
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
   announcements: [
     {
-      name: 'Announcement Name',
-      description: 'Lorem ipsum dolor sit amet.',
-      date: '9/18/2021',
+      type: announcementTypes.INFO,
+      title: 'This is a title',
+      content: 'This is a team-wide announcement.',
+      expires: '2021-09-19',
     },
   ],
   information: (

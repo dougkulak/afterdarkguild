@@ -7,7 +7,7 @@ import fire from '../teams/fire';
 import ruby from '../teams/ruby';
 import rainbow from '../teams/rainbow';
 import amethyst from '../teams/amethyst';
-import {recruitStatuses} from './config';
+import {announcementTypes, recruitStatuses, teams} from './config';
 
 export const raidTeams = [
   {
@@ -29,6 +29,23 @@ export const raidTeams = [
       </div>
     ),
     rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+    announcements: [
+      {
+        date: '2021-09-19',
+        author: 'Trazick',
+        type: announcementTypes.SUCCESS,
+        title: 'New Guild Website!',
+        content:
+          'We have launched a new website for the guild to keep us more organized. Have a look around and let us know your feedback. There are a number of new features on the roadmap so if you have any free time to contribute, we can likely figure out something you can help with. If you have any issues or questions regarding the website, please contact Shazzamy. Welcome and enjoy!',
+      },
+      {
+        date: '2021-08-01',
+        author: 'Norrie',
+        type: announcementTypes.INFO,
+        title: 'New Core Raid Team',
+        content: 'We have added a new core raid team, Amethyst!',
+      },
+    ],
   },
   {
     color: colors.blue[400],
@@ -69,3 +86,12 @@ export const raidTeams = [
     ...amethyst,
   },
 ];
+
+export const getAnnouncementsForTeam = (team) => {
+  if (team === teams.ALL) return raidTeams[0].announcements;
+  return raidTeams
+    .find((x) => x.name === team)
+    .announcements.filter(
+      (x) => new Date(x.expires || new Date()) >= new Date()
+    );
+};

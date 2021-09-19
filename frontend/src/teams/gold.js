@@ -18,6 +18,11 @@ const data = {
   recruitNeeds: 'Feral Druid, Shaman, Boomkin, Lock',
   description: 'Guided EPGP',
   progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
+  announcements: [
+    {
+      content: 'This is a team-wide announcement.',
+    },
+  ],
   information: (
     <div>
       <p>

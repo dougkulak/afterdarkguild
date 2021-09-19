@@ -17,7 +17,8 @@ import {Button, ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import {pages, settings} from './config/config';
 import {Sidebar} from './Sidebar';
-import {TeamNav} from './components/TeamNav';
+import {TeamBottomNav} from './components/TeamBottomNav';
+import {TeamTopNav} from './components/TeamTopNav';
 
 export const defaultRaidTeamData = raidTeams[0];
 export const defaultPageData = raidTeamPages[0];
@@ -30,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: `${theme.palette.raidToolbarBg} !important`,
   },
   raidTeamToolbar: {
-    paddingTop: theme.spacing(2),
     justifyContent: 'center',
 
     '& .MuiToggleButton-root': {
       color: 'white',
+      borderRadius: 0,
     },
     [theme.breakpoints.down('md')]: {
       paddingTop: theme.spacing(3),
@@ -43,7 +44,23 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: theme.spacing(2),
     },
 
-    padding: 0,
+    padding: '0 !important',
+    minHeight: 'auto !important',
+
+    '& .Mui-selected': {
+      borderTop: '4px solid white',
+    },
+  },
+  sticky: {
+    position: 'sticky',
+    zIndex: theme.zIndex.appBar,
+    top: 56,
+    [theme.breakpoints.down('xs')]: {
+      top: 48,
+    },
+    [theme.breakpoints.up('sm')]: {
+      top: 64,
+    },
   },
 }));
 
@@ -211,28 +228,34 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
 
       <Box component="main" sx={{flexGrow: 1, p: 0}}>
         <Toolbar />
-        <Toolbar className={classes.raidTeamToolbar}>
-          <ToggleButtonGroup
-            size={'small'}
-            value={team.name}
-            exclusive
-            fullWidth
-            onChange={handleRaidTeamButtonClick}>
-            {raidTeams.map((x) => (
-              <ToggleButton
-                key={x.name}
-                value={x.name}
-                label={x.name}
-                style={{backgroundColor: x.color}}>
-                {isWidthDown('md', width) ? <>&nbsp;</> : x.name}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
-        </Toolbar>
 
-        <Box p={3}>
-          <TeamNav team={team} page={page} />
-          <Box pt={3}>{children}</Box>
+        <div className={classes.sticky}>
+          <Toolbar className={classes.raidTeamToolbar}>
+            <ToggleButtonGroup
+              size={'small'}
+              value={team.name}
+              exclusive
+              fullWidth
+              onChange={handleRaidTeamButtonClick}>
+              {raidTeams.map((x) => (
+                <ToggleButton
+                  key={x.name}
+                  value={x.name}
+                  label={x.name}
+                  style={{backgroundColor: x.color}}>
+                  {isWidthDown('md', width) ? <>&nbsp;</> : x.name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+          </Toolbar>
+
+          <TeamTopNav team={team} page={page} />
+        </div>
+
+        <Box p={3}>{children}</Box>
+
+        <Box p={3} pt={0}>
+          <TeamBottomNav team={team} page={page} />
         </Box>
       </Box>
     </Box>

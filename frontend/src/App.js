@@ -9,6 +9,7 @@ import RulesPage from './pages/rules';
 import RosterPage from './pages/roster';
 import {raidTeamPages} from './config/pages';
 import {raidTeams} from './config/teams';
+import {settings} from './config/config';
 
 const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
@@ -51,7 +52,7 @@ function App() {
               <div style={{position: 'relative'}}>
                 <div style={{height: '100vh'}}>
                   <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true"
+                    src={settings.applyFormLink}
                     width="100%"
                     height="2200"
                     frameBorder="0"

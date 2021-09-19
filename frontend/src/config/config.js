@@ -1,9 +1,10 @@
 export const settings = {
   drawerWidth: 240,
-  showWelcomeEditHelp: true,
-  showRulesEditHelp: true,
-  showRosterEditHelp: true,
-  applyFormLink: 'https://forms.gle/MJ5A3Xiyyf26zLBs9',
+  showWelcomeEditHelp: false,
+  showRulesEditHelp: false,
+  showRosterEditHelp: false,
+  applyFormLink:
+    'https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true',
 };
 
 export const classes = {

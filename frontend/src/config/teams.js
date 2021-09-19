@@ -13,24 +13,22 @@ export const raidTeams = [
   {
     name: 'All',
     color: colors.grey[400],
-    description: 'The After Dark Guild',
+    description: 'Guild-Wide Settings',
     information: (
       <div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque
-          dolorum enim, et eveniet, excepturi expedita illo in inventore
-          laboriosam maxime minus molestias nihil, perspiciatis quis similique
-          temporibus vel veritatis.
+          After Dark is a World of Warcraft: TBC Classic alliance guild on
+          US-Grobbulus.
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-          assumenda at consequuntur eligendi et expedita fugit in iure,
-          laudantium nisi omnis quaerat veritatis voluptatum. Facere modi nobis
-          pariatur placeat. Suscipit.
+          After Dark is comprised of <strong>7 core raid teams</strong>. Each
+          team is allowed to operate fairly independently and affords us the
+          ability to accommodate a wider variety of schedules, preferences, and
+          personalities.
         </p>
       </div>
     ),
-    rules: [],
+    rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
   },
   {
     color: colors.blue[400],

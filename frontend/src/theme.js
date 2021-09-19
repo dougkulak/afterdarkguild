@@ -13,6 +13,18 @@ let theme = createTheme({
   typography: {
     fontFamily: 'Montserrat, Helvetica, Arial, san-serif',
   },
+  components: {
+    // Name of the component
+    MuiAppBar: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: colors.blue[500],
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);

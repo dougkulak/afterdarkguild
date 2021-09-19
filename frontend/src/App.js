@@ -23,6 +23,7 @@ function App() {
     setThemeData((prevState) => {
       let newState = {...prevState};
       newState.palette.primary.main = color;
+      newState.components.MuiAppBar.styleOverrides.root.backgroundColor = color;
       return newState;
     });
   };

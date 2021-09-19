@@ -17,6 +17,7 @@ import {Button, ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import {settings} from './config/config';
 import {Sidebar} from './Sidebar';
+import {TeamNav} from './components/TeamNav';
 
 export const defaultRaidTeamData = raidTeams[0];
 export const defaultPageData = raidTeamPages[0];
@@ -133,6 +134,7 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
       <CssBaseline />
 
       <AppBar
+        color={'primary'}
         elevation={0}
         position="fixed"
         sx={{
@@ -151,7 +153,12 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
           <Typography variant="h6" component="div" className={classes.title}>
             {page.name}
           </Typography>
-          <Button color="inherit">Apply</Button>
+          <Button
+            color="inherit"
+            target={'_blank'}
+            href={settings.applyFormLink}>
+            Apply Now
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -218,7 +225,11 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
             ))}
           </ToggleButtonGroup>
         </Toolbar>
-        <Box p={3}>{children}</Box>
+
+        <Box p={3}>
+          <TeamNav team={team} page={page} />
+          <Box pt={3}>{children}</Box>
+        </Box>
       </Box>
     </Box>
   );

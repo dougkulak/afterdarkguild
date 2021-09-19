@@ -42,10 +42,11 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
   return (
     <div>
       <AppBar
+        color={'primary'}
         elevation={0}
         position="relative"
         sx={{
-          width: {sm: `calc(100% - ${settings.drawerWidth}px)`},
+          width: {sm: settings.drawerWidth - 1},
         }}>
         <Toolbar>
           <img
@@ -59,7 +60,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
       <Divider />
       <Box py={3}>
         <Typography variant={'h6'} align={'center'} style={{color: team.color}}>
-          {team.name === 'All' && <>Guild</>}
+          {team.name === 'All' && <>After Dark</>}
           {team.name !== 'All' && <>{team.name} Team</>}
         </Typography>
       </Box>

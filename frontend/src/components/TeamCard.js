@@ -64,10 +64,16 @@ export default function TeamCard({team}) {
             {team.schedule2}
           </Typography>
           <br />
-          <Typography variant="caption" color="text.secondary">
-            <i>{team.description}</i>
-          </Typography>
-          <br />
+          <Box mt={1}>
+            <Typography variant="caption" color="text.secondary">
+              <i>{team.description}</i>
+            </Typography>
+            <br />
+
+            <Typography variant="caption" color="text.secondary">
+              {team.progression.join(', ')}
+            </Typography>
+          </Box>
           <Box mt={1}>
             <Typography variant="caption" color="text.secondary">
               <MilitaryTech fontSize={'small'} sx={{verticalAlign: 'top'}} />

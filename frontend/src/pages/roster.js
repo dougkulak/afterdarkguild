@@ -104,7 +104,7 @@ const RosterPage = ({team, page}) => {
       )}
 
       <Typography variant={'h6'} gutterBottom>
-        {isAll ? 'Guild' : `${team.name} Team`} Roster ({roster.length})
+        {isAll ? 'After Dark' : `${team.name} Team`} Roster ({roster.length})
       </Typography>
 
       <Box pt={2}>

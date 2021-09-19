@@ -17,6 +17,7 @@ const data = {
   recruitStatus: recruitStatuses.OPEN,
   recruitNeeds: 'Exceptional Tryhards',
   description: 'Heavily-Guided EPGP',
+  progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
   information: (
     <div>
       <p>

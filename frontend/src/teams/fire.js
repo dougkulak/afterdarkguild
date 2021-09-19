@@ -17,6 +17,7 @@ const data = {
   recruitStatus: recruitStatuses.OPEN,
   recruitNeeds: 'Holy Priest, Resto Shaman, Holy Paladin',
   description: 'Guided EPGP',
+  progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
   information: (
     <div>
       <p>

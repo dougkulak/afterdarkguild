@@ -39,7 +39,7 @@ const RulesPage = ({team, page}) => {
       )}
 
       <Typography variant={'h6'}>
-        {isAll ? 'Guild' : `${team.name} Team`} Rules
+        {isAll ? 'After Dark' : `${team.name} Team`} Rules
       </Typography>
 
       <ol className={classes.rules}>

@@ -11,6 +11,7 @@ import {isWidthDown, isWidthUp} from '@mui/material/Hidden/withWidth';
 const InfoPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
   const width = useWidth();
+
   return (
     <div>
       {settings.showWelcomeEditHelp && team.name !== teams.ALL && (
@@ -43,7 +44,7 @@ const InfoPage = ({team, page}) => {
       )}
 
       <Typography variant={'h6'}>
-        {isAll ? 'Guild' : `${team.name} Team`} Information
+        {isAll ? 'After Dark' : `${team.name} Team`} Information
       </Typography>
 
       <Box>{team.information}</Box>

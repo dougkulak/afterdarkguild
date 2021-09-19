@@ -17,6 +17,7 @@ const data = {
   recruitStatus: recruitStatuses.OPEN,
   recruitNeeds: 'Standbys',
   description: 'Loot Council',
+  progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
   information: (
     <div>
       <p>

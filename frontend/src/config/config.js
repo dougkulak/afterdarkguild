@@ -1,8 +1,9 @@
 export const settings = {
   drawerWidth: 240,
-  showWelcomeEditHelp: false,
-  showRulesEditHelp: false,
-  showRosterEditHelp: false,
+  showWelcomeEditHelp: true,
+  showRulesEditHelp: true,
+  showRosterEditHelp: true,
+  applyFormLink: 'https://forms.gle/MJ5A3Xiyyf26zLBs9',
 };
 
 export const classes = {
@@ -88,6 +89,12 @@ export const teams = {
   RUBY: 'Ruby',
   RAINBOW: 'Rainbow',
   AMETHYST: 'Amethyst',
+};
+
+export const pages = {
+  RULES: 'Rules',
+  INFO: 'Information',
+  ROSTER: 'Roster',
 };
 
 export const ranks = {

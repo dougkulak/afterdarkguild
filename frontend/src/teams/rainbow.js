@@ -17,6 +17,7 @@ const data = {
   recruitStatus: recruitStatuses.OPEN,
   recruitNeeds: 'Healer (Any Class) & DPS (Esp. Lock/Boomie)',
   description: 'Loot Wheel',
+  progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
   information: (
     <div>
       <p>

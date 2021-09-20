@@ -1,8 +1,14 @@
-export function WowItemLink({num, name}) {
+export function WowItemLink({num, name, size = null, rename = false}) {
   return (
     <span>
-      <br />
-      <a href={`https://tbc.wowhead.com/item=${num}`}>name</a>
+      <a
+        rel={'noreferrer'}
+        target={'_blank'}
+        href={`https://tbc.wowhead.com/item=${num}`}
+        data-wh-rename-link={rename}
+        data-wh-icon-size={size}>
+        {name}
+      </a>
     </span>
   );
 }

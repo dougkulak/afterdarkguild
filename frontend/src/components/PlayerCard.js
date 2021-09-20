@@ -1,9 +1,17 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import {Avatar, ListItem, ListItemAvatar, ListItemText} from '@mui/material';
-import {colorTextByClass} from '../util';
+import {
+  Avatar,
+  Divider,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Stack,
+} from '@mui/material';
+import {colorTextByClass, useWidth} from '../util';
 import {getRaidTeamDataByName} from '../Layout';
 import {makeStyles, useTheme} from '@mui/styles';
+import {isWidthDown} from '@mui/material/Hidden/withWidth';
 
 const useStyles = makeStyles((theme) => ({
   outlined: {
@@ -15,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 export default function PlayerCard({player, variant}) {
   const theme = useTheme();
   const classes = useStyles();
+  const width = useWidth();
+
   const getColorForTeam = (team) => {
     return getRaidTeamDataByName(team).color;
   };
@@ -42,37 +52,48 @@ export default function PlayerCard({player, variant}) {
         secondaryTypographyProps={{component: 'div'}}
         secondary={
           <React.Fragment>
-            <Typography
-              sx={{
-                display: 'inline',
-                color: getColorForTeam(player.team),
-              }}
-              component="span"
-              variant="body2">
-              {player.team}
-            </Typography>
-            <> &nbsp;|&nbsp; </>
-            <Typography
-              sx={{display: 'inline'}}
-              component="span"
-              variant="body2"
-              color="text.primary">
-              {player.race}{' '}
-              {colorTextByClass(`${player.spec} ${player.class}`, player.class)}
-            </Typography>
-            <> &nbsp;|&nbsp; </>
-            {player.profession1 ? (
-              `${player.profession1} (${player.profession1skill})`
-            ) : (
-              <> &mdash; </>
-            )}
-            {' / '}
-            {player.profession2 ? (
-              `${player.profession2} (${player.profession2skill})`
-            ) : (
-              <> &mdash; </>
-            )}
-            <br />
+            <Stack
+              divider={<Divider orientation="vertical" flexItem />}
+              direction={isWidthDown('lg', width) ? 'column' : 'row'}
+              spacing={isWidthDown('lg', width) ? 0 : 1}>
+              <Typography
+                noWrap
+                sx={{
+                  display: 'inline',
+                  color: getColorForTeam(player.team),
+                }}
+                component="span"
+                variant="body2">
+                {player.team}
+              </Typography>
+
+              <Typography
+                noWrap
+                sx={{display: 'inline'}}
+                component="span"
+                variant="body2"
+                color="text.primary">
+                {player.race}{' '}
+                {colorTextByClass(
+                  `${player.spec} ${player.class}`,
+                  player.class
+                )}
+              </Typography>
+
+              <div>
+                {player.profession1 ? (
+                  `${player.profession1} (${player.profession1skill})`
+                ) : (
+                  <> &mdash; </>
+                )}
+                {' / '}
+                {player.profession2 ? (
+                  `${player.profession2} (${player.profession2skill})`
+                ) : (
+                  <> &mdash; </>
+                )}
+              </div>
+            </Stack>
             <Typography variant={'caption'} color={'textSecondary'}>
               {player.description}
             </Typography>

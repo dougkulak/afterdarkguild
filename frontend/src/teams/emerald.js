@@ -406,6 +406,22 @@ const data = {
       notes:
         'Questions or issues regarding the After Dark website? Message me!',
       attunes: [attunes.KARAZHAN, attunes.SSC, attunes.TK],
+      lootReceived: [
+        {
+          item: 28767,
+          itemName: 'The Decapitator',
+          date: '2021-09-19',
+          giver: 'Pinsir',
+          encounter: encounters.KARAZHAN,
+        },
+        {
+          item: 29766,
+          itemName: 'Leggings of the Fallen Champion',
+          date: '2021-09-19',
+          giver: 'Pinsir',
+          encounter: encounters.KARAZHAN,
+        },
+      ],
     },
     {
       name: 'Furrygsis',

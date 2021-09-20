@@ -152,3 +152,25 @@ export const attunes = {
   SSC: 'Serpentshrine Cavern',
   TK: 'Tempest Keep',
 };
+
+export const equipmentSlots = {
+  HEAD: 'Head',
+  NECK: 'Neck',
+  SHOULDERS: 'Shoulders',
+  BACK: 'Back',
+  CHEST: 'Chest',
+  SHIRT: 'Shirt',
+  TABARD: 'Tabard',
+  WRISTS: 'Wrists',
+  MAINHAND: 'Main Hand',
+  OFFHAND: 'Off Hand',
+  HANDS: 'Hands',
+  WAIST: 'Waist',
+  LEGS: 'Legs',
+  FEET: 'Feet',
+  FINGER1: 'Finger 1',
+  FINGER2: 'Finger 2',
+  TRINKET1: 'Trinket 1',
+  TRINKET2: 'Trinket 2',
+  RANGED: 'Ranged',
+};

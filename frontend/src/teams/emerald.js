@@ -406,6 +406,27 @@ const data = {
       notes:
         'Questions or issues regarding the After Dark website? Message me!',
       attunes: [attunes.KARAZHAN, attunes.SSC, attunes.TK],
+      equipment: {
+        head: 32087,
+        neck: null,
+        shoulders: null,
+        back: null,
+        chest: null,
+        shirt: null,
+        tabard: null,
+        wrists: null,
+        mainhand: null,
+        offhand: null,
+        hands: null,
+        waist: null,
+        legs: null,
+        feet: null,
+        finger1: null,
+        finger2: null,
+        trinket1: null,
+        trinket2: null,
+        ranged: null,
+      },
       lootReceived: [
         {
           item: 28767,

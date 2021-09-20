@@ -12,7 +12,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import {pages, settings} from '../config/config';
+import {equipmentSlots, pages, settings} from '../config/config';
 import {slugify, useWidth} from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
@@ -63,6 +63,142 @@ function LootItemReceived({loot}) {
         secondaryTypographyProps={{variant: 'caption'}}
       />
     </ListItemButton>
+  );
+}
+
+function EquipmentSlot({slot, item, side = 'left'}) {
+  const width = useWidth();
+  return (
+    <ListItemButton
+      sx={{
+        justifyContent:
+          side === 'right'
+            ? isWidthDown('md', width)
+              ? 'flex-start'
+              : 'flex-end'
+            : 'flex-start',
+        flexDirection:
+          side === 'right'
+            ? isWidthDown('md', width)
+              ? 'row'
+              : 'row-reverse'
+            : 'row',
+      }}
+      disabled={!item}
+      onClick={
+        item
+          ? (e) => {
+              const href = e.currentTarget.querySelector('a').href;
+              window.open(href);
+            }
+          : null
+      }>
+      <ListItemAvatar
+        sx={{
+          minWidth: 'auto',
+          mr: side === 'right' ? (isWidthDown('md', width) ? 1 : 0) : 1,
+          ml: side === 'right' ? (isWidthDown('md', width) ? 0 : 1) : 0,
+        }}>
+        <Box sx={{position: 'relative', width: 44, height: 44}}>
+          <WowItemLink num={item} size={'medium'} block />
+          <img
+            src={`/icons/gearslots/${slot.replace(' ', '')}.jpg`}
+            alt={slot}
+            width={44}
+            height={44}
+            style={{position: 'absolute', top: 0, left: 0, zIndex: -1}}
+          />
+        </Box>
+      </ListItemAvatar>
+      <ListItemText
+        sx={{
+          textAlign:
+            side === 'right'
+              ? isWidthDown('md', width)
+                ? 'left'
+                : 'right'
+              : 'left',
+        }}
+        primary={item ? <WowItemLink num={item} rename={true} /> : slot}
+      />
+    </ListItemButton>
+  );
+}
+
+function Equipment({equipped}) {
+  return (
+    <div>
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={12} md={6}>
+          <EquipmentSlot slot={equipmentSlots.HEAD} item={equipped.head} />
+          <EquipmentSlot slot={equipmentSlots.NECK} item={equipped.neck} />
+          <EquipmentSlot
+            slot={equipmentSlots.SHOULDERS}
+            item={equipped.shoulders}
+          />
+          <EquipmentSlot slot={equipmentSlots.BACK} item={equipped.back} />
+          <EquipmentSlot slot={equipmentSlots.CHEST} item={equipped.chest} />
+          <EquipmentSlot slot={equipmentSlots.SHIRT} item={equipped.shirt} />
+          <EquipmentSlot slot={equipmentSlots.TABARD} item={equipped.tabard} />
+          <EquipmentSlot slot={equipmentSlots.WRISTS} item={equipped.wrists} />
+          <EquipmentSlot
+            slot={equipmentSlots.MAINHAND}
+            item={equipped.mainhand}
+          />
+          <EquipmentSlot
+            slot={equipmentSlots.OFFHAND}
+            item={equipped.offhand}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={6}>
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.HANDS}
+            item={equipped.hands}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.WAIST}
+            item={equipped.waist}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.LEGS}
+            item={equipped.legs}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.FEET}
+            item={equipped.feet}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.FINGER1}
+            item={equipped.finger1}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.FINGER2}
+            item={equipped.finger2}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.TRINKET1}
+            item={equipped.trinket1}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.TRINKET2}
+            item={equipped.trinket2}
+          />
+          <EquipmentSlot
+            side={'right'}
+            slot={equipmentSlots.RANGED}
+            item={equipped.ranged}
+          />
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 
@@ -120,15 +256,17 @@ const PlayerPage = () => {
 
       <Box mt={2}>
         <Typography variant={'overline'} color={'primary'}>
-          Equipment
+          Gear
         </Typography>
       </Box>
 
       {!player.equipment && (
         <Typography variant={'body2'}>
-          Player has not added any equipment to show off yet.
+          Player does not have any gear defined yet.
         </Typography>
       )}
+
+      {player.equipment && <Equipment equipped={player.equipment} />}
 
       <Box mt={2}>
         <Typography variant={'overline'} color={'primary'}>

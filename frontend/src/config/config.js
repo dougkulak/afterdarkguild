@@ -1,11 +1,11 @@
 export const settings = {
   drawerWidth: 260,
-  showWelcomeEditHelp: false,
-  showRulesEditHelp: false,
-  showRosterEditHelp: false,
-  showAnnouncementEditHelp: false,
-  showRaidEditHelp: false,
-  showPlayerEditHelp: false,
+  showWelcomeEditHelp: true,
+  showRulesEditHelp: true,
+  showRosterEditHelp: true,
+  showAnnouncementEditHelp: true,
+  showRaidEditHelp: true,
+  showPlayerEditHelp: true,
   applyFormLink:
     'https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true',
   discordLink: 'https://discord.gg/afterdarkguild',

@@ -132,6 +132,10 @@ const data = {
         bestAvgExecution: 92,
         bestAvgSpeed: 74,
         bestTime: '1:22:00',
+        executionLogLink: 'https://link/to/log/with/best/execution',
+        speedLogLink: 'https://link/to/log/with/best/speed',
+        timeLogLink: 'https://link/to/log/with/best/time',
+        recordLastBroken: '2021-09-01',
       },
       strategy: (
         <div>
@@ -308,6 +312,10 @@ const data = {
         bestAvgExecution: 96,
         bestAvgSpeed: 80,
         bestTime: '7:44',
+        executionLogLink: 'https://link/to/log/with/best/execution',
+        speedLogLink: 'https://link/to/log/with/best/speed',
+        timeLogLink: 'https://link/to/log/with/best/time',
+        recordLastBroken: '2021-09-01',
       },
       strategy: <span>We just go in and kick Gruul's butt.</span>,
       teams: [

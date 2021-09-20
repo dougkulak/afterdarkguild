@@ -30,6 +30,7 @@ import {useParams} from 'react-router-dom';
 import {getPlayerDataByName, unknownPlayer} from '../config/players';
 import RaidCard from '../components/RaidCard';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
+import Link from '@mui/material/Link';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -118,7 +119,7 @@ const RaidPage = ({team, page}) => {
       </Box>
 
       {isAllRaids && (
-        <>
+        <Box pb={2}>
           <Typography variant={'overline'} color={'primary'} gutterBottom>
             Raids ({team.raids.length - 1})
           </Typography>
@@ -132,14 +133,20 @@ const RaidPage = ({team, page}) => {
                 </Grid>
               ))}
           </Grid>
-        </>
+        </Box>
       )}
 
       {!isAllRaids && raid.parses && (
-        <React.Fragment>
-          <Typography variant={'overline'} color={'primary'}>
-            Best Parses
-          </Typography>
+        <Box pb={2}>
+          <div style={{display: 'flex'}}>
+            <Typography variant={'overline'} color={'primary'}>
+              Best Parses&nbsp;
+            </Typography>
+            <Typography variant={'overline'} color={'text.secondary'}>
+              &nbsp;&mdash;&nbsp; Last New Record on{' '}
+              {raid.parses.recordLastBroken}
+            </Typography>
+          </div>
 
           <br />
 
@@ -148,40 +155,61 @@ const RaidPage = ({team, page}) => {
             spacing={isWidthDown('md', width) ? 4 : 10}
             justifyContent={'center'}>
             <div style={{textAlign: 'center'}}>
-              <CircularProgressWithLabel
-                value={raid.parses.bestAvgExecution || 0}
-                label={raid.parses.bestAvgExecution || 0}
-                size={isWidthDown('md', width) ? 50 : 100}
-                sx={{
-                  color: getColorForScore(raid.parses.bestAvgExecution),
-                }}
-              />
-              <br />
-              <Typography variant={'caption'}>Execution</Typography>
+              <Link
+                variant={'caption'}
+                href={raid.parses.executionLogLink}
+                target={'_blank'}
+                underline={'hover'}
+                style={{color: 'white'}}>
+                <CircularProgressWithLabel
+                  value={raid.parses.bestAvgExecution || 0}
+                  label={raid.parses.bestAvgExecution || 0}
+                  size={isWidthDown('md', width) ? 50 : 100}
+                  sx={{
+                    color: getColorForScore(raid.parses.bestAvgExecution),
+                  }}
+                />
+                <br />
+                Execution
+              </Link>
             </div>
             <div style={{textAlign: 'center'}}>
-              <CircularProgressWithLabel
-                value={raid.parses.bestAvgSpeed || 0}
-                label={raid.parses.bestAvgSpeed || 0}
-                size={isWidthDown('md', width) ? 50 : 100}
-                sx={{
-                  color: getColorForScore(raid.parses.bestAvgSpeed),
-                }}
-              />
-              <br />
-              <Typography variant={'caption'}>Speed</Typography>
+              <Link
+                variant={'caption'}
+                href={raid.parses.speedLogLink}
+                target={'_blank'}
+                underline={'hover'}
+                style={{color: 'white'}}>
+                <CircularProgressWithLabel
+                  value={raid.parses.bestAvgSpeed || 0}
+                  label={raid.parses.bestAvgSpeed || 0}
+                  size={isWidthDown('md', width) ? 50 : 100}
+                  sx={{
+                    color: getColorForScore(raid.parses.bestAvgSpeed),
+                  }}
+                />
+                <br />
+                Speed
+              </Link>
             </div>
             <div style={{textAlign: 'center'}}>
-              <CircularProgressWithLabel
-                value={0}
-                label={raid.parses.bestTime || 0}
-                size={isWidthDown('md', width) ? 50 : 100}
-              />
-              <br />
-              <Typography variant={'caption'}>Time</Typography>
+              <Link
+                variant={'caption'}
+                href={raid.parses.timeLogLink}
+                target={'_blank'}
+                underline={'hover'}
+                style={{color: 'white'}}>
+                <CircularProgressWithLabel
+                  value={0}
+                  label={raid.parses.bestTime || 0}
+                  size={isWidthDown('md', width) ? 50 : 100}
+                />
+                <br />
+                Time
+              </Link>
             </div>
           </Stack>
-        </React.Fragment>
+        </Box>
       )}
 
       {raid.teams && (

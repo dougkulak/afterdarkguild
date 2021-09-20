@@ -125,6 +125,7 @@ export const announcementTypes = {
 };
 
 export const encounters = {
+  ALL: 'All Raids',
   KARAZHAN: 'Karazhan',
   GRUUL: 'Gruul',
   MAGTHERIDON: 'Magtheridon',

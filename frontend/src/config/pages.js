@@ -30,6 +30,10 @@ export const raidTeamPages = [
     icon: <RaidsIcon />,
     children: [
       {
+        name: 'All Raids',
+        encounter: encounters.ALL,
+      },
+      {
         name: 'Karazhan',
         encounter: encounters.KARAZHAN,
       },

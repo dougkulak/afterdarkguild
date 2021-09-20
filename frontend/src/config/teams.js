@@ -29,6 +29,7 @@ export const raidTeams = [
       </div>
     ),
     rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+    progression: ['Kara: 11/11', 'Gru+Mag: 2/2'],
     announcements: [
       {
         date: '2021-09-19',
@@ -47,6 +48,11 @@ export const raidTeams = [
       },
     ],
     raids: [
+      {
+        encounter: encounters.ALL,
+        progress: '3/5',
+        strategy: <span>Guild just go in and kick butt.</span>,
+      },
       {
         encounter: encounters.KARAZHAN,
         progress: '11/11',

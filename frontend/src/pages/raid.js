@@ -2,10 +2,12 @@ import React from 'react';
 import {
   Alert,
   AlertTitle,
+  CircularProgress,
   Divider,
   Grid,
   LinearProgress,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -14,16 +16,50 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import {settings, teams} from '../config/config';
-import {colorTextByClass, slugify} from '../util';
+import {encounters, settings, teams} from '../config/config';
+import {
+  colorTextByClass,
+  getColorForScore,
+  normalize,
+  slugify,
+  useWidth,
+} from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
 import {useParams} from 'react-router-dom';
 import {getPlayerDataByName, unknownPlayer} from '../config/players';
+import RaidCard from '../components/RaidCard';
+import {isWidthDown} from '@mui/material/Hidden/withWidth';
+
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{position: 'relative', display: 'inline-flex'}}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Typography
+          variant={props.labelvariant || 'h6'}
+          component="div"
+          color="text.secondary">
+          {props.label}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
 
 const RaidPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
-
+  const width = useWidth();
   const params = useParams();
 
   const raid = team.raids.find(
@@ -34,12 +70,12 @@ const RaidPage = ({team, page}) => {
     return <React.Fragment />;
   }
 
-  const normalise = (value, max) => ((value - 1) * 100) / (max - 1);
-
   const [currentProgress, maxProgress] = raid.progress.split('/');
+  const isAllRaids = raid.encounter === encounters.ALL;
+  const raidNoun = isAllRaids ? 'Raids' : 'Bosses';
 
   return (
-    <div>
+    <Box>
       {settings.showRaidEditHelp && team.name !== teams.ALL && (
         <React.Fragment>
           <Alert severity="info">
@@ -70,19 +106,86 @@ const RaidPage = ({team, page}) => {
         <Box sx={{width: '100%', mr: 1}}>
           <LinearProgress
             variant="determinate"
-            value={normalise(currentProgress, maxProgress)}
+            value={normalize(currentProgress, maxProgress)}
             sx={{height: 24, borderRadius: 4}}
           />
         </Box>
         <Box sx={{minWidth: 100}}>
           <Typography variant="body2" color="text.secondary">
-            {currentProgress}/{maxProgress} Bosses
+            {currentProgress}/{maxProgress} {raidNoun}
           </Typography>
         </Box>
       </Box>
 
-      {raid.teams && (
+      {isAllRaids && (
+        <>
+          <Typography variant={'overline'} color={'primary'} gutterBottom>
+            Raids ({team.raids.length - 1})
+          </Typography>
+
+          <Grid container spacing={2}>
+            {team.raids
+              .filter((x) => x.encounter !== encounters.ALL)
+              .map((raid) => (
+                <Grid key={raid.encounter} item xs={12} md={6} lg={4}>
+                  <RaidCard team={team} raid={raid} />
+                </Grid>
+              ))}
+          </Grid>
+        </>
+      )}
+
+      {!isAllRaids && raid.parses && (
         <React.Fragment>
+          <Typography variant={'overline'} color={'primary'}>
+            Best Parses
+          </Typography>
+
+          <br />
+
+          <Stack
+            direction={'row'}
+            spacing={isWidthDown('md', width) ? 4 : 10}
+            justifyContent={'center'}>
+            <div style={{textAlign: 'center'}}>
+              <CircularProgressWithLabel
+                value={raid.parses.bestAvgExecution || 0}
+                label={raid.parses.bestAvgExecution || 0}
+                size={isWidthDown('md', width) ? 50 : 100}
+                sx={{
+                  color: getColorForScore(raid.parses.bestAvgExecution),
+                }}
+              />
+              <br />
+              <Typography variant={'caption'}>Execution</Typography>
+            </div>
+            <div style={{textAlign: 'center'}}>
+              <CircularProgressWithLabel
+                value={raid.parses.bestAvgSpeed || 0}
+                label={raid.parses.bestAvgSpeed || 0}
+                size={isWidthDown('md', width) ? 50 : 100}
+                sx={{
+                  color: getColorForScore(raid.parses.bestAvgSpeed),
+                }}
+              />
+              <br />
+              <Typography variant={'caption'}>Speed</Typography>
+            </div>
+            <div style={{textAlign: 'center'}}>
+              <CircularProgressWithLabel
+                value={0}
+                label={raid.parses.bestTime || 0}
+                size={isWidthDown('md', width) ? 50 : 100}
+              />
+              <br />
+              <Typography variant={'caption'}>Time</Typography>
+            </div>
+          </Stack>
+        </React.Fragment>
+      )}
+
+      {raid.teams && (
+        <Box mb={2}>
           <Typography variant={'overline'} color={'primary'} gutterBottom>
             Teams
           </Typography>
@@ -143,23 +246,27 @@ const RaidPage = ({team, page}) => {
               </Grid>
             ))}
 
+            <div style={{width: '100%', height: 0}}>&nbsp;</div>
+
             <Box p={2}>
               <Typography variant={'caption'} color={'text.secondary'}>
                 Message 👑 for invites.
               </Typography>
             </Box>
           </Grid>
-        </React.Fragment>
+        </Box>
       )}
 
-      <Typography variant={'overline'} color={'primary'}>
-        Strategy
-      </Typography>
+      <Box mt={2}>
+        <Typography variant={'overline'} color={'primary'}>
+          Strategy
+        </Typography>
+      </Box>
 
       <Typography variant={'body1'} component={'div'}>
         {raid.strategy}
       </Typography>
-    </div>
+    </Box>
   );
 };
 

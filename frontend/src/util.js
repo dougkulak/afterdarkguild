@@ -1,6 +1,7 @@
 import {useTheme} from '@mui/material/styles';
 import {useMediaQuery} from '@mui/material';
 import {classColors} from './config/config';
+import {wowItemColors} from './theme';
 
 export const useWidth = () => {
   const theme = useTheme();
@@ -36,4 +37,18 @@ export const getPositionOfOccurrence = (string, subString, index) => {
 export const colorTextByClass = (text, playerClass) => {
   const key = playerClass.toUpperCase();
   return <span style={{color: classColors[key]}}>{text}</span>;
+};
+
+export const normalize = (value, max) => ((value - 0) * 100) / (max - 0);
+
+export const getColorForScore = (score) => {
+  let color = wowItemColors.common;
+  if (score >= 30) color = wowItemColors.uncommon;
+  if (score >= 50) color = wowItemColors.rare;
+  if (score >= 75) color = wowItemColors.epic;
+  if (score >= 95) color = wowItemColors.legendary;
+  if (score === 99) color = wowItemColors.astounding;
+  if (score === 100) color = wowItemColors.artifact;
+
+  return color;
 };

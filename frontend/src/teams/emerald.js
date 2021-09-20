@@ -117,8 +117,22 @@ const data = {
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
   raids: [
     {
+      encounter: encounters.ALL,
+      progress: '3/5',
+      strategy: (
+        <span>
+          General strategy/instructions/consumes/etc for all raids goes here.
+        </span>
+      ),
+    },
+    {
       encounter: encounters.KARAZHAN,
       progress: '11/11',
+      parses: {
+        bestAvgExecution: 92,
+        bestAvgSpeed: 74,
+        bestTime: '1:22:00',
+      },
       strategy: (
         <div>
           <ol>
@@ -290,22 +304,55 @@ const data = {
     {
       encounter: encounters.GRUUL,
       progress: '1/1',
+      parses: {
+        bestAvgExecution: 96,
+        bestAvgSpeed: 80,
+        bestTime: '7:44',
+      },
       strategy: <span>We just go in and kick Gruul's butt.</span>,
+      teams: [
+        {
+          name: 'Emerald Team',
+          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          players: ['TBD'],
+        },
+      ],
     },
     {
       encounter: encounters.MAGTHERIDON,
       progress: '1/1',
       strategy: <span>We just go in and kick Magtheridon's butt.</span>,
+      teams: [
+        {
+          name: 'Emerald Team',
+          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          players: ['TBD'],
+        },
+      ],
     },
     {
       encounter: encounters.SSC,
       progress: '4/6',
       strategy: <span>We just go in and kick Lady Vashj's butt.</span>,
+      teams: [
+        {
+          name: 'Emerald Team',
+          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          players: ['TBD'],
+        },
+      ],
     },
     {
       encounter: encounters.TK,
       progress: '0/4',
       strategy: <span>We just go in and kick Kael'thas' butt.</span>,
+      teams: [
+        {
+          name: 'Emerald Team',
+          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          players: ['TBD'],
+        },
+      ],
     },
   ],
   players: [

@@ -39,6 +39,15 @@ const data = {
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
   raids: [
     {
+      encounter: encounters.ALL,
+      progress: '3/5',
+      strategy: (
+        <span>
+          General strategy/instructions/consumes/etc for all raids goes here.
+        </span>
+      ),
+    },
+    {
       encounter: encounters.KARAZHAN,
       progress: '11/11',
       strategy: <span>We just go in and kick Prince's butt.</span>,

@@ -7,12 +7,12 @@ import fire from '../teams/fire';
 import ruby from '../teams/ruby';
 import rainbow from '../teams/rainbow';
 import amethyst from '../teams/amethyst';
-import {announcementTypes, encounters, recruitStatuses, teams} from './config';
+import {announcementTypes, encounters, teams} from './config';
 
 export const raidTeams = [
   {
     name: 'All',
-    color: colors.grey[400],
+    color: colors.grey[600],
     description: 'Guild-Wide Settings',
     information: (
       <div>
@@ -33,7 +33,7 @@ export const raidTeams = [
     announcements: [
       {
         date: '2021-09-19',
-        author: 'Trazick',
+        author: 'Shazzamy',
         type: announcementTypes.SUCCESS,
         title: 'New Guild Website!',
         content:
@@ -90,32 +90,22 @@ export const raidTeams = [
   },
   {
     color: colors.yellow[700],
-    type: 'Semi-HC',
-    recruitStatus: recruitStatuses.OPEN,
     ...gold,
   },
   {
     color: colors.orange[700],
-    type: 'Semi-HC',
-    recruitStatus: recruitStatuses.OPEN,
     ...fire,
   },
   {
     color: colors.red[600],
-    type: 'Semi-HC',
-    recruitStatus: recruitStatuses.OPEN,
     ...ruby,
   },
   {
     color: colors.pink[300],
-    type: 'Semi-Casual',
-    recruitStatus: recruitStatuses.OPEN,
     ...rainbow,
   },
   {
     color: colors.purple[400],
-    type: 'Hardcore',
-    recruitStatus: recruitStatuses.OPEN,
     ...amethyst,
   },
 ];

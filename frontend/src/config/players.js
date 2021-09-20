@@ -6,6 +6,7 @@ import ruby from '../teams/ruby';
 import rainbow from '../teams/rainbow';
 import amethyst from '../teams/amethyst';
 import {classes, professions, races, ranks, specs, teams} from './config';
+import {slugify} from '../util';
 
 export const players = [
   ...blue.players,
@@ -19,6 +20,10 @@ export const players = [
 
 export const getPlayerDataByName = (name) => {
   return players.find((x) => x.name === name);
+};
+
+export const getPlayerDataByPath = (path) => {
+  return players.find((x) => slugify(x.name) === path.substring(1));
 };
 
 export const getRosterForTeam = (team) => {
@@ -37,5 +42,5 @@ export const unknownPlayer = {
   profession1skill: 0,
   profession2: professions.MINING,
   profession2skill: 0,
-  notes: 'Player Not Found',
+  description: 'Player Not Found',
 };

@@ -1,5 +1,6 @@
 import {
   announcementTypes,
+  attunes,
   classes,
   encounters,
   professions,
@@ -322,7 +323,7 @@ const data = {
         {
           name: 'Emerald Team',
           nextScheduledRun: 'Tuesday 9/19 9:00P ST',
-          players: ['TBD'],
+          players: null,
         },
       ],
     },
@@ -334,7 +335,7 @@ const data = {
         {
           name: 'Emerald Team',
           nextScheduledRun: 'Tuesday 9/19 9:00P ST',
-          players: ['TBD'],
+          players: null,
         },
       ],
     },
@@ -346,7 +347,7 @@ const data = {
         {
           name: 'Emerald Team',
           nextScheduledRun: 'Tuesday 9/19 9:00P ST',
-          players: ['TBD'],
+          players: null,
         },
       ],
     },
@@ -358,7 +359,7 @@ const data = {
         {
           name: 'Emerald Team',
           nextScheduledRun: 'Tuesday 9/19 9:00P ST',
-          players: ['TBD'],
+          players: null,
         },
       ],
     },
@@ -375,7 +376,7 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Emerald Team Leader',
+      description: 'Emerald Team Leader',
     },
     {
       name: 'Parasite',
@@ -388,7 +389,7 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Emerald Team Leader',
+      description: 'Emerald Team Leader',
     },
     {
       name: 'Shazzamy',
@@ -401,7 +402,10 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Guild Webmaster',
+      description: 'Guild Webmaster',
+      notes:
+        'Questions or issues regarding the After Dark website? Message me!',
+      attunes: [attunes.KARAZHAN, attunes.SSC, attunes.TK],
     },
     {
       name: 'Furrygsis',

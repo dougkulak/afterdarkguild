@@ -2,44 +2,43 @@ import React, {useEffect, useState} from 'react';
 import {
   Alert,
   AlertTitle,
-  Avatar,
+  CardActionArea,
   Divider,
   FormControl,
   InputAdornment,
   InputLabel,
   List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
   OutlinedInput,
   Paper,
   Typography,
 } from '@mui/material';
 
 import {getRosterForTeam} from '../config/players';
-import {useTheme} from '@mui/styles';
 import Box from '@mui/material/Box';
 import {Info, Search as SearchIcon} from '@mui/icons-material';
-import {getRaidTeamDataByName} from '../Layout';
 import {settings, teams} from '../config/config';
-import {colorTextByClass, slugify} from '../util';
+import {slugify} from '../util';
 import Code from '../components/Code';
+import PlayerCard from '../components/PlayerCard';
+import {useHistory} from 'react-router-dom';
+import Card from '@mui/material/Card';
 
 const RosterPage = ({team, page}) => {
-  const theme = useTheme();
   const isAll = team.name === teams.ALL;
+  const history = useHistory();
 
   const fullTeamRoster = getRosterForTeam(team.name);
 
   const [roster, setRoster] = useState(fullTeamRoster);
   const [keywords, setKeywords] = useState('');
 
-  const handleKeywordsChange = (e) => {
-    setKeywords(e.currentTarget.value);
+  const switchToPlayer = (player) => {
+    window.scrollTo(0, 0);
+    history.push(`/players/${slugify(player.name)}`);
   };
 
-  const getColorForTeam = (team) => {
-    return getRaidTeamDataByName(team).color;
+  const handleKeywordsChange = (e) => {
+    setKeywords(e.currentTarget.value);
   };
 
   const cleanup = (val) => {
@@ -59,7 +58,9 @@ const RosterPage = ({team, page}) => {
     const prof2Matches = cleanup(player.profession2).includes(
       cleanup(keywords)
     );
-    const notesMatches = cleanup(player.notes).includes(cleanup(keywords));
+    const descriptionMatches = cleanup(player.description).includes(
+      cleanup(keywords)
+    );
 
     return (
       nameMatches ||
@@ -69,7 +70,7 @@ const RosterPage = ({team, page}) => {
       classMatches ||
       prof1Matches ||
       prof2Matches ||
-      notesMatches
+      descriptionMatches
     );
   };
 
@@ -116,7 +117,7 @@ const RosterPage = ({team, page}) => {
             id="outlined-adornment-amount"
             value={keywords}
             placeholder={
-              'Search name, team, rank, race, class, profession, and notes'
+              'Search name, team, rank, race, class, profession, and description'
             }
             onChange={handleKeywordsChange}
             startAdornment={
@@ -137,73 +138,16 @@ const RosterPage = ({team, page}) => {
             </Typography>
           </Paper>
         )}
-        {roster.map((player) => {
-          return (
-            <ListItem key={player.name}>
-              <ListItemAvatar>
-                <Avatar
-                  src={`/icons/classicon_${player.class.toLowerCase()}.jpg`}
-                />
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{display: 'inline', marginRight: theme.spacing(1)}}
-                      variant={'h6'}>
-                      {player.name}
-                    </Typography>
-                    <Typography variant={'caption'} color={'textSecondary'}>
-                      [{player.rank}]
-                    </Typography>
-                  </React.Fragment>
-                }
-                secondaryTypographyProps={{component: 'div'}}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{
-                        display: 'inline',
-                        color: getColorForTeam(player.team),
-                      }}
-                      component="span"
-                      variant="body2">
-                      {player.team}
-                    </Typography>
-                    <> &nbsp;|&nbsp; </>
-                    <Typography
-                      sx={{display: 'inline'}}
-                      component="span"
-                      variant="body2"
-                      color="text.primary">
-                      {player.race}{' '}
-                      {colorTextByClass(
-                        `${player.spec} ${player.class}`,
-                        player.class
-                      )}
-                    </Typography>
-                    <> &nbsp;|&nbsp; </>
-                    {player.profession1 ? (
-                      `${player.profession1} (${player.profession1skill})`
-                    ) : (
-                      <> &mdash; </>
-                    )}
-                    {' / '}
-                    {player.profession2 ? (
-                      `${player.profession2} (${player.profession2skill})`
-                    ) : (
-                      <> &mdash; </>
-                    )}
-                    <br />
-                    <Typography variant={'caption'} color={'textSecondary'}>
-                      {player.notes}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-          );
-        })}
+        {roster.map((player) => (
+          <Card
+            key={player.name}
+            sx={{mt: 1}}
+            style={{background: 'none', boxShadow: 'none'}}>
+            <CardActionArea onClick={() => switchToPlayer(player)}>
+              <PlayerCard player={player} />
+            </CardActionArea>
+          </Card>
+        ))}
       </List>
     </div>
   );

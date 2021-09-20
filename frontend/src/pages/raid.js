@@ -26,11 +26,12 @@ import {
 } from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
-import {useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {getPlayerDataByName, unknownPlayer} from '../config/players';
 import RaidCard from '../components/RaidCard';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import Link from '@mui/material/Link';
+import {RaidTopNav} from '../components/RaidTopNav';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -62,6 +63,7 @@ const RaidPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
   const width = useWidth();
   const params = useParams();
+  const history = useHistory();
 
   const raid = team.raids.find(
     (x) => slugify(x.encounter) === slugify(params.raid)
@@ -74,6 +76,11 @@ const RaidPage = ({team, page}) => {
   const [currentProgress, maxProgress] = raid.progress.split('/');
   const isAllRaids = raid.encounter === encounters.ALL;
   const raidNoun = isAllRaids ? 'Raids' : 'Bosses';
+
+  const switchToPlayer = (player) => {
+    window.scrollTo(0, 0);
+    history.push(`/players/${slugify(player.name)}`);
+  };
 
   return (
     <Box>
@@ -98,6 +105,8 @@ const RaidPage = ({team, page}) => {
       <Typography variant={'h6'} sx={{mb: 2}}>
         {isAll ? 'After Dark' : `${team.name} Team`} Raid: {page.name}
       </Typography>
+
+      <RaidTopNav team={team} page={page} raid={raid} />
 
       <Typography variant={'overline'} color={'primary'}>
         Progression
@@ -250,7 +259,11 @@ const RaidPage = ({team, page}) => {
                           player.role = role;
 
                           return (
-                            <TableRow key={player.name}>
+                            <TableRow
+                              key={player.name}
+                              hover
+                              sx={{cursor: 'pointer'}}
+                              onClick={() => switchToPlayer(player)}>
                               <TableCell>
                                 {i === 0 && '👑'}
                                 {colorTextByClass(
@@ -276,11 +289,13 @@ const RaidPage = ({team, page}) => {
 
             <div style={{width: '100%', height: 0}}>&nbsp;</div>
 
-            <Box p={2}>
-              <Typography variant={'caption'} color={'text.secondary'}>
-                Message 👑 for invites.
-              </Typography>
-            </Box>
+            {raid.players && (
+              <Box p={2}>
+                <Typography variant={'caption'} color={'text.secondary'}>
+                  Message 👑 for invites.
+                </Typography>
+              </Box>
+            )}
           </Grid>
         </Box>
       )}

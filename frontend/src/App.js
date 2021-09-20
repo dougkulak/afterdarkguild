@@ -12,6 +12,7 @@ import {raidTeams} from './config/teams';
 import {settings} from './config/config';
 import AnnouncementsPage from './pages/announcements';
 import RaidPage from './pages/raid';
+import PlayerPage from './pages/player';
 
 const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
@@ -49,6 +50,9 @@ function App() {
           setTeam={setCurrentTeam}
           setPage={setCurrentPage}>
           <Switch>
+            <Route path={'/players/:player'}>
+              <PlayerPage page={currentPage} />
+            </Route>
             <Route path={'/:team/information'}>
               <InfoPage team={currentTeam} page={currentPage} />
             </Route>

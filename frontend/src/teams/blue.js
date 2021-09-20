@@ -1,5 +1,6 @@
 import {
   announcementTypes,
+  attunes,
   classes,
   encounters,
   professions,
@@ -93,7 +94,9 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Guild Master, Blue Team Leader',
+      description: 'Guild Master, Blue Team Leader',
+      notes: <span>After Dark Founder & Guild Master&trade;</span>,
+      attunes: [attunes.KARAZHAN, attunes.SSC, attunes.TK],
     },
     {
       name: 'Norrie',
@@ -106,7 +109,7 @@ const data = {
       profession1skill: 375,
       profession2: professions.ENCHANTING,
       profession2skill: 375,
-      notes: 'Blue Team Leader',
+      description: 'Blue Team Leader',
     },
   ],
 };

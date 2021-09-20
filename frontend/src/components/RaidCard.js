@@ -43,6 +43,7 @@ export default function RaidCard({team, raid}) {
   const history = useHistory();
 
   const handleCardClick = () => {
+    window.scrollTo(0, 0);
     history.push(`/${slugify(team.name)}/${slugify(raid.encounter)}`);
   };
 

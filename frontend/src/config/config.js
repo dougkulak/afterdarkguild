@@ -1,12 +1,14 @@
 export const settings = {
   drawerWidth: 260,
-  showWelcomeEditHelp: true,
-  showRulesEditHelp: true,
-  showRosterEditHelp: true,
-  showAnnouncementEditHelp: true,
-  showRaidEditHelp: true,
+  showWelcomeEditHelp: false,
+  showRulesEditHelp: false,
+  showRosterEditHelp: false,
+  showAnnouncementEditHelp: false,
+  showRaidEditHelp: false,
+  showPlayerEditHelp: false,
   applyFormLink:
     'https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true',
+  discordLink: 'https://discord.gg/afterdarkguild',
 };
 
 export const classes = {
@@ -98,7 +100,10 @@ export const pages = {
   APPLY: 'Apply',
   RULES: 'Rules',
   INFO: 'Information',
+  INFO_LABEL: 'Info',
   ROSTER: 'Roster',
+  RAIDS: 'All Raids',
+  RAIDS_LABEL: 'Raids',
   ANNOUNCEMENTS: 'Announcements',
 };
 
@@ -129,6 +134,21 @@ export const encounters = {
   KARAZHAN: 'Karazhan',
   GRUUL: 'Gruul',
   MAGTHERIDON: 'Magtheridon',
+  SSC: 'Serpentshrine Cavern',
+  TK: 'Tempest Keep',
+};
+
+export const encounterAbbrevs = {
+  ALL: 'All',
+  KARAZHAN: 'Kara',
+  GRUUL: 'Gruul',
+  MAGTHERIDON: 'Mag',
+  SSC: 'SSC',
+  TK: 'TK',
+};
+
+export const attunes = {
+  KARAZHAN: 'Karazhan',
   SSC: 'Serpentshrine Cavern',
   TK: 'Tempest Keep',
 };

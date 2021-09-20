@@ -39,6 +39,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
   const handleLogoClick = () => {
     switchToTeam(defaultRaidTeamData);
     switchToPage(defaultPageData);
+    window.scrollTo(0, 0);
     history.push(
       `/${slugify(defaultRaidTeamData.name)}/${slugify(defaultPageData.name)}`
     );
@@ -94,7 +95,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
                     numAnnouncements && x.name === pages.ANNOUNCEMENTS ? (
                       <Badge
                         badgeContent={numAnnouncements}
-                        color="primary"
+                        color="error"
                         style={{paddingRight: '8px'}}>
                         {x.name}
                       </Badge>

@@ -13,12 +13,15 @@ import {raidTeams} from './config/teams';
 import {makeStyles} from '@mui/styles';
 import {useHistory} from 'react-router-dom';
 import {getPositionOfOccurrence, slugify, useWidth} from './util';
-import {Button, ToggleButton, ToggleButtonGroup} from '@mui/material';
+import {Button, Divider, ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
-import {pages, settings} from './config/config';
+import {settings} from './config/config';
 import {Sidebar} from './Sidebar';
 import {TeamBottomNav} from './components/TeamBottomNav';
 import {TeamTopNav} from './components/TeamTopNav';
+
+import discordLogo from './logo-discord-white.svg';
+import {getPlayerDataByPath, unknownPlayer} from './config/players';
 
 export const defaultRaidTeamData = raidTeams[0];
 export const defaultPageData = raidTeamPages[0];
@@ -62,7 +65,23 @@ const useStyles = makeStyles((theme) => ({
       top: 64,
     },
   },
+  discordLogo: {
+    height: 16,
+    marginRight: theme.spacing(1),
+  },
 }));
+
+function DiscordIcon() {
+  const classes = useStyles();
+
+  return (
+    <img
+      src={discordLogo}
+      className={classes.discordLogo}
+      alt="After Dark Discord"
+    />
+  );
+}
 
 export const getRaidTeamDataByName = (name) => {
   return (
@@ -81,11 +100,31 @@ const getPageDataByName = (name) => {
 };
 
 const getDefaultRaidTeamData = () => {
-  return getRaidTeamDataByName(getRaidTeamNameFromPath());
+  const primaryPath = getRaidTeamNameFromPath();
+  const secondaryPath = getPageNameFromPath();
+
+  if (primaryPath === '/players') {
+    const player = getPlayerDataByPath(secondaryPath) || {
+      ...unknownPlayer,
+    };
+    return getRaidTeamDataByName(player.team);
+  } else {
+    return getRaidTeamDataByName(getRaidTeamNameFromPath());
+  }
 };
 
 const getDefaultPageData = () => {
-  return getPageDataByName(getPageNameFromPath());
+  const primaryPath = getRaidTeamNameFromPath();
+  const secondaryPath = getPageNameFromPath();
+
+  if (primaryPath === '/players') {
+    const player = getPlayerDataByPath(secondaryPath) || {
+      ...unknownPlayer,
+    };
+    return {name: player.name};
+  } else {
+    return getPageDataByName(getPageNameFromPath());
+  }
 };
 
 const getRaidTeamNameFromPath = () => {
@@ -103,6 +142,21 @@ const getPageNameFromPath = () => {
   return window.location.pathname.substring(pos);
 };
 
+function Footer() {
+  return (
+    <Box>
+      <Box mb={2}>
+        <Divider />
+      </Box>
+
+      <Typography variant={'caption'} color={'text.secondary'}>
+        Copyright &copy; {new Date().getFullYear()} After Dark Guild. All rights
+        reserved.
+      </Typography>
+    </Box>
+  );
+}
+
 function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
   const classes = useStyles();
   const history = useHistory();
@@ -111,20 +165,33 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const switchToTeam = (team) => {
-    setThemeColor(team.color);
+    window.scrollTo(0, 0);
     history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
+    setThemeColor(team.color);
     setTeam(team);
   };
 
   const switchToPage = (page) => {
+    window.scrollTo(0, 0);
     history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
     setMobileOpen(false);
     setPage(page);
   };
 
   const handleRaidTeamButtonClick = (e) => {
+    const primaryPath = getRaidTeamNameFromPath();
     const raidTeamName = e.currentTarget.value;
-    switchToTeam(getRaidTeamDataByName(raidTeamName));
+    const team = getRaidTeamDataByName(raidTeamName);
+
+    if (primaryPath === '/players') {
+      window.scrollTo(0, 0);
+      history.push(
+        `/${slugify(raidTeamName)}/${slugify(defaultPageData.name)}`
+      );
+      setMobileOpen(false);
+    } else {
+      switchToTeam(team);
+    }
   };
 
   const handleDrawerToggle = () => {
@@ -139,6 +206,7 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
     setPage(page);
 
     if (window.location.pathname === '/') {
+      window.scrollTo(0, 0);
       history.push(`/${slugify(team.name)}/${slugify(page.name)}`);
     }
   }, []); //eslint-disable-line
@@ -179,10 +247,8 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
           <Typography variant="h6" component="div" className={classes.title}>
             {page.name}
           </Typography>
-          <Button
-            color="inherit"
-            onClick={() => switchToPage({name: pages.APPLY})}>
-            Apply Now
+          <Button color="inherit" href={settings.discordLink} target={'_blank'}>
+            <DiscordIcon /> Discord
           </Button>
         </Toolbar>
       </AppBar>
@@ -259,6 +325,10 @@ function Layout({team, page, setTeam, setPage, setThemeColor, children}) {
 
         <Box p={3} pt={0}>
           <TeamBottomNav team={team} page={page} />
+        </Box>
+
+        <Box p={3} pt={0}>
+          <Footer />
         </Box>
       </Box>
     </Box>

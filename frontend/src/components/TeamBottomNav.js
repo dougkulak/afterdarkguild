@@ -28,6 +28,8 @@ export function TeamBottomNav({team, page}) {
   const width = useWidth();
   const classes = useStyles();
 
+  const isRoster = window.location.pathname.startsWith('/players/');
+
   const gotoTeamPage = (pageName) => {
     window.scrollTo(0, 0);
     history.push(`/${slugify(team.name)}/${slugify(pageName)}`);
@@ -48,7 +50,14 @@ export function TeamBottomNav({team, page}) {
           size={'small'}
           className={page.name === pages.INFO ? classes.active : null}
           onClick={() => gotoTeamPage(pages.INFO)}>
-          {pages.INFO}
+          {pages.INFO_LABEL}
+        </Item>
+        <Item
+          variant={'outlined'}
+          size={'small'}
+          className={page.name === pages.ANNOUNCEMENTS ? classes.active : null}
+          onClick={() => gotoTeamPage(pages.ANNOUNCEMENTS)}>
+          {pages.ANNOUNCEMENTS}
         </Item>
         <Item
           variant={'outlined'}
@@ -60,9 +69,18 @@ export function TeamBottomNav({team, page}) {
         <Item
           variant={'outlined'}
           size={'small'}
-          className={page.name === pages.ROSTER ? classes.active : null}
+          className={
+            page.name === pages.ROSTER || isRoster ? classes.active : null
+          }
           onClick={() => gotoTeamPage(pages.ROSTER)}>
           {pages.ROSTER}
+        </Item>
+        <Item
+          variant={'outlined'}
+          size={'small'}
+          className={page.name === pages.RAIDS ? classes.active : null}
+          onClick={() => gotoTeamPage(pages.RAIDS)}>
+          {pages.RAIDS_LABEL}
         </Item>
         <Item
           variant={'outlined'}

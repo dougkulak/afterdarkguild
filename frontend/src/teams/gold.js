@@ -89,7 +89,7 @@ const data = {
       profession1skill: 375,
       profession2: null,
       profession2skill: null,
-      notes: 'Gold Team Leader',
+      description: 'Gold Team Leader',
     },
   ],
 };

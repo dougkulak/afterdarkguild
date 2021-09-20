@@ -63,7 +63,7 @@ const InfoPage = ({team, page}) => {
             {raidTeams
               .filter((x) => x.name !== teams.ALL)
               .map((team) => (
-                <Grid key={team.name} item xs={12} sm={6} md={4} lg={3}>
+                <Grid key={team.name} item xs={12} sm={12} md={6} lg={4} xl={3}>
                   <TeamCard team={team} />
                 </Grid>
               ))}

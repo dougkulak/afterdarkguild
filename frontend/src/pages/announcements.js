@@ -14,9 +14,11 @@ import {slugify} from '../util';
 import Code from '../components/Code';
 import {getAnnouncementsForTeam} from '../config/teams';
 import {AccountCircleOutlined, Info, Schedule} from '@mui/icons-material';
+import {useHistory} from 'react-router-dom';
 
 const AnnouncementsPage = ({team}) => {
   const isAll = team.name === teams.ALL;
+  const history = useHistory();
 
   const teamAnnouncements = getAnnouncementsForTeam(team.name);
 
@@ -76,6 +78,16 @@ const AnnouncementsPage = ({team}) => {
               <Chip
                 variant={'outlined'}
                 icon={<AccountCircleOutlined />}
+                onClick={
+                  announcement.author
+                    ? () => {
+                        window.scrollTo(0, 0);
+                        history.push(
+                          `/players/${slugify(announcement.author)}`
+                        );
+                      }
+                    : null
+                }
                 label={
                   announcement.author ||
                   (isAll ? 'After Dark' : `${team.name} Team Leader`)

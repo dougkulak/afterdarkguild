@@ -1,6 +1,6 @@
 import {useTheme} from '@mui/material/styles';
 import {useMediaQuery} from '@mui/material';
-import {classColors} from './config/config';
+import {classColors, encounterAbbrevs, encounters} from './config/config';
 import {wowItemColors} from './theme';
 
 export const useWidth = () => {
@@ -52,3 +52,15 @@ export const getColorForScore = (score) => {
 
   return color;
 };
+
+export function getEncounterAbbrev(encounter) {
+  let abbrev = '';
+  if (encounter === encounters.ALL) abbrev = encounterAbbrevs.ALL;
+  if (encounter === encounters.KARAZHAN) abbrev = encounterAbbrevs.KARAZHAN;
+  if (encounter === encounters.GRUUL) abbrev = encounterAbbrevs.GRUUL;
+  if (encounter === encounters.MAGTHERIDON)
+    abbrev = encounterAbbrevs.MAGTHERIDON;
+  if (encounter === encounters.SSC) abbrev = encounterAbbrevs.SSC;
+  if (encounter === encounters.TK) abbrev = encounterAbbrevs.TK;
+  return abbrev;
+}

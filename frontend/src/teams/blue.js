@@ -1,6 +1,7 @@
 import {
   announcementTypes,
   classes,
+  encounters,
   professions,
   races,
   ranks,
@@ -44,6 +45,33 @@ const data = {
     </div>
   ),
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+  raids: [
+    {
+      encounter: encounters.KARAZHAN,
+      progress: '11/11',
+      strategy: <span>We just go in and kick Prince's butt.</span>,
+    },
+    {
+      encounter: encounters.GRUUL,
+      progress: '1/1',
+      strategy: <span>We just go in and kick Gruul's butt.</span>,
+    },
+    {
+      encounter: encounters.MAGTHERIDON,
+      progress: '1/1',
+      strategy: <span>We just go in and kick Magtheridon's butt.</span>,
+    },
+    {
+      encounter: encounters.SSC,
+      progress: '0/6',
+      strategy: <span>We just go in and kick Lady Vashj's butt.</span>,
+    },
+    {
+      encounter: encounters.TK,
+      progress: '0/4',
+      strategy: <span>We just go in and kick Kael'thas' butt.</span>,
+    },
+  ],
   players: [
     {
       name: 'Trazick',

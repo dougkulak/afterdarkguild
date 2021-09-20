@@ -72,9 +72,11 @@ export const getRaidTeamDataByName = (name) => {
 };
 
 const getPageDataByName = (name) => {
+  const allChildren = raidTeamPages.map((x) => x.children || []).flat();
+  const allPages = [...raidTeamPages, ...allChildren];
+
   return (
-    raidTeamPages.find((x) => slugify(x.name) === slugify(name)) ??
-    defaultPageData
+    allPages.find((x) => slugify(x.name) === slugify(name)) ?? defaultPageData
   );
 };
 

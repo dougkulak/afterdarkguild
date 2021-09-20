@@ -11,6 +11,7 @@ import {raidTeamPages} from './config/pages';
 import {raidTeams} from './config/teams';
 import {settings} from './config/config';
 import AnnouncementsPage from './pages/announcements';
+import RaidPage from './pages/raid';
 
 const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
@@ -77,6 +78,9 @@ function App() {
                   </iframe>
                 </div>
               </div>
+            </Route>
+            <Route path={'/:team/:raid'}>
+              <RaidPage team={currentTeam} page={currentPage} />
             </Route>
           </Switch>
         </Layout>

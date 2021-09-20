@@ -34,7 +34,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
 
   //const handleRaidTeamPageClick = (e) => {};
 
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState(page.name);
 
   const handleLogoClick = () => {
     switchToTeam(defaultRaidTeamData);
@@ -47,8 +47,9 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
   const handleLinkClick = (page) => {
     if (page.children) {
       setOpen(open === page.name ? null : page.name);
+    } else {
+      switchToPage(page);
     }
-    switchToPage(page);
   };
 
   return (
@@ -107,7 +108,7 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
                 )}
               </ListItem>
               {x.children && (
-                <Collapse in={open} timeout="auto" unmountOnExit>
+                <Collapse in={x.name === open} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     {x.children.map((y) => (
                       <ListItem
@@ -117,7 +118,8 @@ export const Sidebar = ({team, page, switchToTeam, switchToPage}) => {
                           switchToPage(y);
                         }}
                         selected={y.name === page.name}>
-                        <ListItemText primary={y.name} />
+                        <ListItemIcon></ListItemIcon>
+                        <ListItemText secondary={y.name} />
                       </ListItem>
                     ))}
                   </List>

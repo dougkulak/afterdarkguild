@@ -4,8 +4,9 @@ import {
   Rule as RulesIcon,
   PostAdd as ApplyIcon,
   Campaign as AnnouncementsIcon,
-  Explore as StrategiesIcon,
+  Explore as RaidsIcon,
 } from '@mui/icons-material';
+import {encounters} from './config';
 
 export const raidTeamPages = [
   {
@@ -25,20 +26,28 @@ export const raidTeamPages = [
     icon: <RosterIcon />,
   },
   {
-    name: 'Strategies',
-    icon: <StrategiesIcon />,
+    name: 'Raids',
+    icon: <RaidsIcon />,
     children: [
       {
+        name: 'Karazhan',
+        encounter: encounters.KARAZHAN,
+      },
+      {
         name: 'Gruul',
+        encounter: encounters.GRUUL,
       },
       {
-        name: 'Mag',
+        name: 'Magtheridon',
+        encounter: encounters.MAGTHERIDON,
       },
       {
-        name: 'SSC',
+        name: 'Serpentshrine Cavern',
+        encounter: encounters.SSC,
       },
       {
-        name: 'TK',
+        name: 'Tempest Keep',
+        encounter: encounters.TK,
       },
     ],
   },

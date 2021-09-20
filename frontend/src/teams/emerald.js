@@ -1,6 +1,7 @@
 import {
   announcementTypes,
   classes,
+  encounters,
   professions,
   races,
   ranks,
@@ -114,6 +115,199 @@ const data = {
     </div>
   ),
   rules: ['Be nice.', 'Be punctual.', 'Have fun.'],
+  raids: [
+    {
+      encounter: encounters.KARAZHAN,
+      progress: '11/11',
+      strategy: (
+        <div>
+          <ol>
+            <li>
+              <strong>Attumen</strong>
+              <ul>
+                <li>At 95%: Boss Dismounts</li>
+                <li>Stack Behind Horse & Focus It</li>
+                <li>At 25%: Boss Mounts & Wipes Threat</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Moroes</strong>
+              <ul>
+                <li>AOE Adds</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Maiden of Virtue</strong>
+              <ul>
+                <li>Spread out</li>
+                <li>Stand in Consecration Before Stun</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Opera Event</strong>
+              <ul>
+                <li>
+                  Romulo & Julianne &mdash; Dispell Julianne's Buff. Romulo
+                  cleaves. Both have to die within 10 seconds of each other.
+                </li>
+                <li>
+                  Wizard of Oz &mdash; Kill Dorothy > Toto > Roar > Strawman >
+                  Tinman (Cleaves) > Crone (Watch out for tornados)
+                </li>
+                <li>
+                  Big Bad Wolf &mdash; If transformed into red riding hood, run
+                  and kite wolf around room.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Nightbane</strong>
+              <ul>
+                <li>Two Phases (Ground & Air)</li>
+                <li>Ground Phase:</li>
+                <li>- Cleaves & Tail Swipes</li>
+                <li>- Don't Stand in Charred Earth</li>
+                <li>- At 75%, 50%, 25% Boss Goes Air</li>
+                <li>Air Phase:</li>
+                <li>- Everyone Stacks</li>
+                <li>- Move Together When Bones Rain</li>
+                <li>- Threat Wipes When Boss Lands</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Curator</strong>
+              <ul>
+                <li>Kill Flares ASAP</li>
+                <li>Evocates When OOM - Damage Taken +200%</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Terestain Illhoof</strong>
+              <ul>
+                <li>Focus Kilrek First</li>
+                <li>When Player Sacrificed, Focus Demon Chains ASAP</li>
+                <li>Ignore Portaled Imps</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Shade of Aran</strong>
+              <ul>
+                <li>Can't Be Tanked</li>
+                <li>Dispel Chains of Ice</li>
+                <li>Ranged Stay Away (AOE Counterspell)</li>
+                <li>Stay Out of Blizzard</li>
+                <li>Run to Edge of Room When He Teleports You</li>
+                <li>Don't Move While In Flame Wreath</li>
+                <li>Kill 4 Elementals</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Netherspite</strong>
+              <ul>
+                <li>Two Phases (Portal & Banish)</li>
+                <li>Portal Phase:</li>
+                <li>
+                  - Three Portals Spawn & Buff Boss So Stand In-Front Of Beams
+                </li>
+                <li>- Red Lazer for Tanks</li>
+                <li>- Blue Lazer for Casters</li>
+                <li>- Green Lazer for Healers</li>
+                <li>Don't Stand In Void Zones</li>
+                <li>Banish Phase:</li>
+                <li>Run to Opposite Side of Room</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Chess Event</strong>
+              <ul>
+                <li>Kill The King</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Prince Malchezar</strong>
+              <ul>
+                <li>Tank Near Safe Cubby</li>
+                <li>Phase 1: Summons Infernals that Hellfire</li>
+                <li>Phase 2: Boss Does More Damage</li>
+                <li>Phase 3: Boss Throws Axes Randomly</li>
+                <li>Melee DPS: LOS Shadow Nova Before Cast</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      ),
+      teams: [
+        {
+          name: 'Emerald Team 1',
+          nextScheduledRun: 'Tuesday 9/19 8:00P ST',
+          players: [
+            'Pinsir as melee',
+            'Parasite as melee',
+            'Tonize as heals',
+            'Furrygsis as tank',
+            'Skyguy as tank',
+            'Cordulla as heals',
+            'Dreys as dps',
+            'Eztokill as tank',
+            'Tavlox as dps',
+            'Shazzamy as dps',
+          ],
+        },
+        {
+          name: 'Emerald Team 2',
+          nextScheduledRun: 'Tuesday 9/19 8:00P ST',
+          players: [
+            'Skyguy as tank',
+            'Furrygsis as tank',
+            'Tavlox as dps',
+            'Parasite as melee',
+            'Cordulla as heals',
+            'Tonize as heals',
+            'Pinsir as dps',
+            'Dreys as dps',
+            'Eztokill as dps',
+            'Shazzamy as dps',
+          ],
+        },
+        {
+          name: 'Emerald Team 3',
+          nextScheduledRun: 'Thursday 9/21 9:00P ST',
+          players: [
+            'Parasite as dps',
+            'Skyguy as tank',
+            'Tonize as tank',
+            'Pinsir as dps',
+            'Furrygsis as dps',
+            'Tavlox as dps',
+            'Cordulla as heals',
+            'Dreys as dps',
+            'Shazzamy as heals',
+            'Eztokill as dps',
+          ],
+        },
+      ],
+    },
+    {
+      encounter: encounters.GRUUL,
+      progress: '1/1',
+      strategy: <span>We just go in and kick Gruul's butt.</span>,
+    },
+    {
+      encounter: encounters.MAGTHERIDON,
+      progress: '1/1',
+      strategy: <span>We just go in and kick Magtheridon's butt.</span>,
+    },
+    {
+      encounter: encounters.SSC,
+      progress: '4/6',
+      strategy: <span>We just go in and kick Lady Vashj's butt.</span>,
+    },
+    {
+      encounter: encounters.TK,
+      progress: '0/4',
+      strategy: <span>We just go in and kick Kael'thas' butt.</span>,
+    },
+  ],
   players: [
     {
       name: 'Pinsir',
@@ -153,6 +347,90 @@ const data = {
       profession2: professions.ENCHANTING,
       profession2skill: 375,
       notes: 'Guild Webmaster',
+    },
+    {
+      name: 'Furrygsis',
+      team: teams.EMERALD,
+      rank: ranks.RAIDLEADER,
+      race: races.NIGHTELF,
+      class: classes.DRUID,
+      spec: specs.DRUID_FERALTANK,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Tonize',
+      team: teams.EMERALD,
+      rank: ranks.RAIDER,
+      race: races.NIGHTELF,
+      class: classes.PALADIN,
+      spec: specs.PALADIN_RET,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Skyguy',
+      team: teams.EMERALD,
+      rank: ranks.RAIDER,
+      race: races.NIGHTELF,
+      class: classes.PALADIN,
+      spec: specs.PALADIN_PROT,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Cordulla',
+      team: teams.EMERALD,
+      rank: ranks.RAIDER,
+      race: races.NIGHTELF,
+      class: classes.DRUID,
+      spec: specs.DRUID_BAL,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Dreys',
+      team: teams.EMERALD,
+      rank: ranks.RAIDER,
+      race: races.GNOME,
+      class: classes.WARLOCK,
+      spec: specs.WARLOCK_AFF,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Eztokill',
+      team: teams.EMERALD,
+      rank: ranks.RAIDLEADER,
+      race: races.NIGHTELF,
+      class: classes.WARRIOR,
+      spec: specs.WARRIOR_PROT,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
+    },
+    {
+      name: 'Tavlox',
+      team: teams.EMERALD,
+      rank: ranks.RAIDER,
+      race: races.DRAENEI,
+      class: classes.SHAMAN,
+      spec: specs.SHAMAN_ELE,
+      profession1: null,
+      profession1skill: null,
+      profession2: null,
+      profession2skill: null,
     },
   ],
 };

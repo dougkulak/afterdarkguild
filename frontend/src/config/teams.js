@@ -7,7 +7,7 @@ import fire from '../teams/fire';
 import ruby from '../teams/ruby';
 import rainbow from '../teams/rainbow';
 import amethyst from '../teams/amethyst';
-import {announcementTypes, recruitStatuses, teams} from './config';
+import {announcementTypes, encounters, recruitStatuses, teams} from './config';
 
 export const raidTeams = [
   {
@@ -44,6 +44,33 @@ export const raidTeams = [
         type: announcementTypes.INFO,
         title: 'New Core Raid Team',
         content: 'We have added a new core raid team, Amethyst!',
+      },
+    ],
+    raids: [
+      {
+        encounter: encounters.KARAZHAN,
+        progress: '11/11',
+        strategy: <span>Guild just go in and kick Prince's butt.</span>,
+      },
+      {
+        encounter: encounters.GRUUL,
+        progress: '1/1',
+        strategy: <span>Guild just go in and kick Gruul's butt.</span>,
+      },
+      {
+        encounter: encounters.MAGTHERIDON,
+        progress: '1/1',
+        strategy: <span>Guild just go in and kick Magtheridon's butt.</span>,
+      },
+      {
+        encounter: encounters.SSC,
+        progress: '4/6',
+        strategy: <span>Guild just go in and kick Lady Vashj's butt.</span>,
+      },
+      {
+        encounter: encounters.TK,
+        progress: '0/4',
+        strategy: <span>Guild just go in and kick Kael'thas' butt.</span>,
       },
     ],
   },

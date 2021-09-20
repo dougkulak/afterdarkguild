@@ -1,9 +1,10 @@
 export const settings = {
   drawerWidth: 260,
-  showWelcomeEditHelp: false,
-  showRulesEditHelp: false,
-  showRosterEditHelp: false,
+  showWelcomeEditHelp: true,
+  showRulesEditHelp: true,
+  showRosterEditHelp: true,
   showAnnouncementEditHelp: true,
+  showRaidEditHelp: true,
   applyFormLink:
     'https://docs.google.com/forms/d/e/1FAIpQLSdtE-Q1OieZnYKz9hQsnMJECHP1HzAKRKnJaYqS2tr-4KgS7Q/viewform?embedded=true',
 };
@@ -121,4 +122,12 @@ export const announcementTypes = {
   ERROR: 'error',
   SUCCESS: 'success',
   WARNING: 'warning',
+};
+
+export const encounters = {
+  KARAZHAN: 'Karazhan',
+  GRUUL: 'Gruul',
+  MAGTHERIDON: 'Magtheridon',
+  SSC: 'Serpentshrine Cavern',
+  TK: 'Tempest Keep',
 };

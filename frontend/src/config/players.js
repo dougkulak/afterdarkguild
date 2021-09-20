@@ -5,7 +5,7 @@ import fire from '../teams/fire';
 import ruby from '../teams/ruby';
 import rainbow from '../teams/rainbow';
 import amethyst from '../teams/amethyst';
-import {teams} from './config';
+import {classes, professions, races, ranks, specs, teams} from './config';
 
 export const players = [
   ...blue.players,
@@ -24,4 +24,18 @@ export const getPlayerDataByName = (name) => {
 export const getRosterForTeam = (team) => {
   if (team === teams.ALL) return players;
   return players.filter((x) => x.team === team);
+};
+
+export const unknownPlayer = {
+  name: 'Unknown',
+  team: teams.ALL,
+  rank: ranks.SOCIAL,
+  race: races.HUMAN,
+  class: classes.WARRIOR,
+  spec: specs.WARRIOR_FURY,
+  profession1: professions.SKINNING,
+  profession1skill: 0,
+  profession2: professions.MINING,
+  profession2skill: 0,
+  notes: 'Player Not Found',
 };

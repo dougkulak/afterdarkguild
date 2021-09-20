@@ -422,6 +422,26 @@ const data = {
           encounter: encounters.KARAZHAN,
         },
       ],
+      lootWanted: [
+        {
+          item: 30183,
+          itemName: 'Nether Vortex',
+          dateFirstWanted: '2021-09-19',
+          encounters: [encounters.SSC, encounters.TK],
+        },
+        {
+          item: 29996,
+          itemName: 'Rod of the Sun King',
+          dateFirstWanted: '2021-09-19',
+          encounters: [encounters.TK],
+        },
+        {
+          item: 30055,
+          itemName: 'Shoulderpads of the Stranger',
+          dateFirstWanted: '2021-09-18',
+          encounters: [encounters.SSC],
+        },
+      ],
     },
     {
       name: 'Furrygsis',

@@ -5,6 +5,7 @@ import {
   Button,
   Chip,
   Divider,
+  Grid,
   ListItemAvatar,
   ListItemButton,
   ListItemText,
@@ -23,7 +24,28 @@ import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import List from '@mui/material/List';
 import {WowItemLink} from '../components/WowItemLink';
 
-function LootItem({loot}) {
+function LootItemWanted({loot}) {
+  return (
+    <ListItemButton
+      onClick={(e) => {
+        const href = e.currentTarget.querySelector('a').href;
+        window.open(href);
+      }}>
+      <ListItemAvatar>
+        <WowItemLink num={loot.item} size={'medium'} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={<WowItemLink name={loot.itemName} num={loot.item} />}
+        secondary={`from [${loot.encounters.join(', ')}] since ${new Date(
+          loot.dateFirstWanted
+        ).toLocaleDateString()}`}
+        secondaryTypographyProps={{variant: 'caption'}}
+      />
+    </ListItemButton>
+  );
+}
+
+function LootItemReceived({loot}) {
   return (
     <ListItemButton
       onClick={(e) => {
@@ -110,23 +132,44 @@ const PlayerPage = () => {
 
       <Box mt={2}>
         <Typography variant={'overline'} color={'primary'}>
-          Loot Received
+          Loot
         </Typography>
       </Box>
 
-      {!player.lootReceived && (
-        <Typography variant={'body2'}>
-          Player has not received any loot yet.
-        </Typography>
-      )}
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={12} md={6}>
+          <Typography variant={'subtitle2'}>Wanted</Typography>
+          {!player.lootWanted && (
+            <Typography variant={'body2'}>
+              Player has not requested to reserve any loot yet.
+            </Typography>
+          )}
 
-      {player.lootReceived && (
-        <List sx={{width: '100%', bgcolor: 'background.paper'}}>
-          {player.lootReceived.map((loot, i) => (
-            <LootItem key={i} loot={loot} />
-          ))}
-        </List>
-      )}
+          {player.lootWanted && (
+            <List sx={{width: '100%', bgcolor: 'background.paper'}}>
+              {player.lootWanted.map((loot, i) => (
+                <LootItemWanted key={i} loot={loot} />
+              ))}
+            </List>
+          )}
+        </Grid>
+        <Grid item xs={12} sm={12} md={6}>
+          <Typography variant={'subtitle2'}>Received</Typography>
+          {!player.lootReceived && (
+            <Typography variant={'body2'}>
+              Player has not received any loot yet.
+            </Typography>
+          )}
+
+          {player.lootReceived && (
+            <List sx={{width: '100%', bgcolor: 'background.paper'}}>
+              {player.lootReceived.map((loot, i) => (
+                <LootItemReceived key={i} loot={loot} />
+              ))}
+            </List>
+          )}
+        </Grid>
+      </Grid>
 
       <Box mt={2}>
         <Typography variant={'overline'} color={'primary'}>
@@ -141,7 +184,7 @@ const PlayerPage = () => {
       )}
 
       <Stack
-        direction={isWidthDown('sm', width) ? 'column' : 'row'}
+        direction={isWidthDown('md', width) ? 'column' : 'row'}
         spacing={1}>
         {player.attunes &&
           player.attunes.map((attune) => (

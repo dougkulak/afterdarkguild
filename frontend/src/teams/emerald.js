@@ -355,19 +355,19 @@ const data = {
       teams: [
         {
           name: 'Emerald Team',
-          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          nextScheduledRun: 'Tuesday 9/21 8:00P ST',
           players: null,
         },
       ],
     },
     {
       encounter: encounters.TK,
-      progress: '0/4',
+      progress: '3/4',
       strategy: <span>We just go in and kick Kael'thas' butt.</span>,
       teams: [
         {
           name: 'Emerald Team',
-          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          nextScheduledRun: 'Thursday 9/23 8:00P ST',
           players: null,
         },
       ],
@@ -437,6 +437,27 @@ const data = {
         ranged: null,
       },
       lootReceived: [
+        {
+          item: 30183,
+          itemName: 'Nether Vortexx',
+          date: '2021-09-20',
+          giver: 'Pinsir',
+          encounter: encounters.TK,
+        },
+        {
+          item: 30183,
+          itemName: 'Nether Vortexx',
+          date: '2021-09-20',
+          giver: 'Pinsir',
+          encounter: encounters.TK,
+        },
+        {
+          item: 30183,
+          itemName: 'Nether Vortexx',
+          date: '2021-09-20',
+          giver: 'Pinsir',
+          encounter: encounters.TK,
+        },
         {
           item: 28767,
           itemName: 'The Decapitator',

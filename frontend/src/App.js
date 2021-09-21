@@ -67,11 +67,11 @@ function App() {
             </Route>
             <Route path={'/:team/apply'}>
               <div style={{position: 'relative'}}>
-                <div style={{height: '100vh'}}>
+                <div style={{height: '100%'}}>
                   <iframe
                     src={settings.applyFormLink}
                     width="100%"
-                    height="2200"
+                    height="2000"
                     frameBorder="0"
                     marginHeight="0"
                     marginWidth="0"

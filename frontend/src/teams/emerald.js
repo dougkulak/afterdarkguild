@@ -330,6 +330,15 @@ const data = {
     {
       encounter: encounters.MAGTHERIDON,
       progress: '1/1',
+      parses: {
+        bestAvgExecution: 99,
+        bestAvgSpeed: 87,
+        bestTime: '6:45',
+        executionLogLink: 'https://link/to/log/with/best/execution',
+        speedLogLink: 'https://link/to/log/with/best/speed',
+        timeLogLink: 'https://link/to/log/with/best/time',
+        recordLastBroken: '2021-09-18',
+      },
       strategy: <span>We just go in and kick Magtheridon's butt.</span>,
       teams: [
         {

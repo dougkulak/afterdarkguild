@@ -335,6 +335,18 @@ const PlayerPage = () => {
           ))}
       </Stack>
 
+      <Box mt={2}>
+        <Typography variant={'overline'} color={'primary'}>
+          Parses
+        </Typography>
+      </Box>
+
+      {!player.parses && (
+        <Typography variant={'body2'}>
+          Coming soon. This will show the player's recent parses.
+        </Typography>
+      )}
+
       {player.notes && (
         <React.Fragment>
           <Box mt={2}>

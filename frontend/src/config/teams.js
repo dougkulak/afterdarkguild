@@ -56,16 +56,43 @@ export const raidTeams = [
       {
         encounter: encounters.KARAZHAN,
         progress: '11/11',
+        parses: {
+          bestAvgExecution: 97,
+          bestAvgSpeed: 98,
+          bestTime: '1:11',
+          executionLogLink: 'https://link/to/log/with/best/execution',
+          speedLogLink: 'https://link/to/log/with/best/speed',
+          timeLogLink: 'https://link/to/log/with/best/time',
+          recordLastBroken: '2021-09-18',
+        },
         strategy: <span>Guild just go in and kick Prince's butt.</span>,
       },
       {
         encounter: encounters.GRUUL,
         progress: '1/1',
+        parses: {
+          bestAvgExecution: 97,
+          bestAvgSpeed: 100,
+          bestTime: '1:11',
+          executionLogLink: 'https://link/to/log/with/best/execution',
+          speedLogLink: 'https://link/to/log/with/best/speed',
+          timeLogLink: 'https://link/to/log/with/best/time',
+          recordLastBroken: '2021-09-18',
+        },
         strategy: <span>Guild just go in and kick Gruul's butt.</span>,
       },
       {
         encounter: encounters.MAGTHERIDON,
         progress: '1/1',
+        parses: {
+          bestAvgExecution: 96,
+          bestAvgSpeed: 99,
+          bestTime: '1:11',
+          executionLogLink: 'https://link/to/log/with/best/execution',
+          speedLogLink: 'https://link/to/log/with/best/speed',
+          timeLogLink: 'https://link/to/log/with/best/time',
+          recordLastBroken: '2021-09-18',
+        },
         strategy: <span>Guild just go in and kick Magtheridon's butt.</span>,
       },
       {

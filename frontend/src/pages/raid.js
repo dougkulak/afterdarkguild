@@ -36,7 +36,6 @@ import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import Link from '@mui/material/Link';
 import {RaidTopNav} from '../components/RaidTopNav';
 import {ExitToApp, YouTube} from '@mui/icons-material';
-import {raidTeams} from '../config/teams';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -82,13 +81,8 @@ const RaidPage = ({team, page}) => {
   const isAllRaids = raid.encounter === encounters.ALL;
   const raidNoun = isAllRaids ? 'Raids' : 'Bosses';
 
-  const allLoggedRuns = raidTeams
-    .map(
-      (raidTeam) =>
-        raidTeam.raids
-          .map((raidTeamRaids) => raidTeamRaids.loggedRuns || [])
-          .flat() || []
-    )
+  const allLoggedRuns = team.raids
+    .map((raidTeamRaids) => raidTeamRaids.loggedRuns || [])
     .flat();
 
   const switchToPlayer = (player) => {

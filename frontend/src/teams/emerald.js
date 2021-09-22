@@ -450,7 +450,7 @@ const data = {
               time: '7:05',
             },
           ],
-          youtubeLink: 'https://www.youtube.com/watch?v=xE2-jgJKPoo',
+          youtubeLink: 'https://www.youtube.com/watch?v=iOLcXHZRJsg',
           warcraftLogsLink:
             'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
           attendees: [
@@ -530,7 +530,7 @@ const data = {
               time: '4:24',
             },
           ],
-          youtubeLink: null,
+          youtubeLink: 'https://www.youtube.com/watch?v=stuXQFa4_Xg',
           warcraftLogsLink:
             'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
           attendees: [

@@ -630,6 +630,20 @@ const data = {
         {
           item: 30183,
           itemName: 'Nether Vortexx',
+          date: '2021-09-21',
+          giver: 'Pinsir',
+          encounter: encounters.TK,
+        },
+        {
+          item: 30183,
+          itemName: 'Nether Vortexx',
+          date: '2021-09-21',
+          giver: 'Pinsir',
+          encounter: encounters.TK,
+        },
+        {
+          item: 30183,
+          itemName: 'Nether Vortexx',
           date: '2021-09-20',
           giver: 'Pinsir',
           encounter: encounters.TK,
@@ -664,12 +678,6 @@ const data = {
         },
       ],
       lootWanted: [
-        {
-          item: 30183,
-          itemName: 'Nether Vortex',
-          dateFirstWanted: '2021-09-19',
-          encounters: [encounters.SSC, encounters.TK],
-        },
         {
           item: 29996,
           itemName: 'Rod of the Sun King',

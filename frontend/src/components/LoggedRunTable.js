@@ -15,9 +15,10 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import React from 'react';
-import {colorTextByClass, getColorForScore} from '../util';
+import {colorTextByClass, getColorForScore, slugify} from '../util';
 import {ExitToApp, YouTube} from '@mui/icons-material';
 import {getPlayerDataByName} from '../config/players';
+import {useHistory} from 'react-router-dom';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -46,6 +47,8 @@ function CircularProgressWithLabel(props) {
 }
 
 export function LoggedRunTable({runs}) {
+  const history = useHistory();
+
   return (
     <TableContainer component={Paper}>
       <Table size={'small'}>
@@ -204,6 +207,11 @@ export function LoggedRunTable({runs}) {
                               m: '2px',
                               borderRadius: '2px',
                               backgroundColor: '#333',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => {
+                              window.scrollTo(0, 0);
+                              history.push(`/players/${slugify(player)}`);
                             }}
                             key={i}
                             label={colorTextByClass(

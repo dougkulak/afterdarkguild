@@ -259,7 +259,7 @@ const data = {
       teams: [
         {
           name: 'Emerald Team 1',
-          nextScheduledRun: 'Tuesday 9/19 8:00P ST',
+          nextScheduledRun: 'No Runs Scheduled',
           players: [
             'Pinsir as melee',
             'Parasite as melee',
@@ -275,7 +275,7 @@ const data = {
         },
         {
           name: 'Emerald Team 2',
-          nextScheduledRun: 'Tuesday 9/19 8:00P ST',
+          nextScheduledRun: 'No Runs Scheduled',
           players: [
             'Skyguy as tank',
             'Furrygsis as tank',
@@ -291,7 +291,7 @@ const data = {
         },
         {
           name: 'Emerald Team 3',
-          nextScheduledRun: 'Thursday 9/21 9:00P ST',
+          nextScheduledRun: 'No Runs Scheduled',
           players: [
             'Parasite as dps',
             'Skyguy as tank',
@@ -314,9 +314,12 @@ const data = {
         bestAvgExecution: 98,
         bestAvgSpeed: 94,
         bestTime: '2:57',
-        executionLogLink: 'https://link/to/log/with/best/execution',
-        speedLogLink: 'https://link/to/log/with/best/speed',
-        timeLogLink: 'https://link/to/log/with/best/time',
+        executionLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        speedLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        timeLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
         recordLastBroken: '2021-09-21 20:00:00',
       },
       strategy: <span>We just go in and kick Gruul's butt.</span>,
@@ -394,7 +397,7 @@ const data = {
       teams: [
         {
           name: 'Emerald Team',
-          nextScheduledRun: 'Tuesday 9/19 9:00P ST',
+          nextScheduledRun: 'No Runs Scheduled',
           players: null,
         },
       ],
@@ -402,11 +405,23 @@ const data = {
     {
       encounter: encounters.SSC,
       progress: '4/6',
+      parses: {
+        bestAvgExecution: 81,
+        bestAvgSpeed: 90,
+        bestTime: '3:33',
+        executionLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        speedLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        timeLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        recordLastBroken: '2021-09-21 20:00:00',
+      },
       strategy: <span>We just go in and kick Lady Vashj's butt.</span>,
       teams: [
         {
           name: 'Emerald Team',
-          nextScheduledRun: 'Tuesday 9/21 8:00P ST',
+          nextScheduledRun: 'Thursday 9/23 8:00P ST',
           players: null,
         },
       ],
@@ -470,6 +485,18 @@ const data = {
     {
       encounter: encounters.TK,
       progress: '3/4',
+      parses: {
+        bestAvgExecution: 95,
+        bestAvgSpeed: 84,
+        bestTime: '7:48',
+        executionLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        speedLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        timeLogLink:
+          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+        recordLastBroken: '2021-09-21 20:00:00',
+      },
       strategy: <span>We just go in and kick Kael'thas' butt.</span>,
       teams: [
         {

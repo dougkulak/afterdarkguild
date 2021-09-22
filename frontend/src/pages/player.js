@@ -23,6 +23,9 @@ import {Check, ChevronLeft} from '@mui/icons-material';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import List from '@mui/material/List';
 import {WowItemLink} from '../components/WowItemLink';
+import {LoggedRunTable} from '../components/LoggedRunTable';
+import {getRaidTeamDataByName} from '../Layout';
+import {AttendanceTable} from '../components/AttendanceTable';
 
 function LootItemWanted({loot}) {
   return (
@@ -213,6 +216,20 @@ const PlayerPage = () => {
     (x) => slugify(x.name) === slugify(params.player)
   );
 
+  const allRaids = raidTeams.map((x) => x.raids || []).flat();
+  const allLoggedRuns = allRaids.map((x) => x.loggedRuns || []).flat();
+
+  const teamRaids = getRaidTeamDataByName(player.team).raids;
+  const teamLoggedRuns = teamRaids.map((x) => x.loggedRuns || []).flat();
+
+  const allAttendedRuns = allLoggedRuns.filter((x) =>
+    x.attendees.includes(player.name)
+  );
+
+  const teamAttendedRuns = teamLoggedRuns.filter((x) =>
+    x.attendees.includes(player.name)
+  );
+
   if (!player) {
     return <React.Fragment />;
   }
@@ -311,6 +328,52 @@ const PlayerPage = () => {
 
       <Box mt={2}>
         <Typography variant={'overline'} color={'primary'}>
+          Attendance
+        </Typography>
+      </Box>
+
+      {!teamAttendedRuns && (
+        <Typography variant={'body2'}>
+          Player has not attended any runs yet.
+        </Typography>
+      )}
+
+      {teamAttendedRuns && (
+        <AttendanceTable
+          player={player}
+          allRuns={teamLoggedRuns}
+          attendedRuns={teamAttendedRuns}
+        />
+      )}
+
+      <Box mt={2}>
+        <Typography variant={'overline'} color={'primary'}>
+          Runs Attended
+        </Typography>
+      </Box>
+
+      {!allAttendedRuns && (
+        <Typography variant={'body2'}>
+          Player has not attended any runs yet.
+        </Typography>
+      )}
+
+      {allAttendedRuns && <LoggedRunTable runs={allAttendedRuns} />}
+
+      {player.notes && (
+        <React.Fragment>
+          <Box mt={2}>
+            <Typography variant={'overline'} color={'primary'}>
+              Notes
+            </Typography>
+          </Box>
+
+          <Typography variant={'body2'}>{player.notes}</Typography>
+        </React.Fragment>
+      )}
+
+      <Box mt={2}>
+        <Typography variant={'overline'} color={'primary'}>
           Attunements
         </Typography>
       </Box>
@@ -334,30 +397,6 @@ const PlayerPage = () => {
             />
           ))}
       </Stack>
-
-      <Box mt={2}>
-        <Typography variant={'overline'} color={'primary'}>
-          Parses
-        </Typography>
-      </Box>
-
-      {!player.parses && (
-        <Typography variant={'body2'}>
-          Coming soon. This will show the player's recent parses.
-        </Typography>
-      )}
-
-      {player.notes && (
-        <React.Fragment>
-          <Box mt={2}>
-            <Typography variant={'overline'} color={'primary'}>
-              Notes
-            </Typography>
-          </Box>
-
-          <Typography variant={'body2'}>{player.notes}</Typography>
-        </React.Fragment>
-      )}
     </Box>
   );
 };

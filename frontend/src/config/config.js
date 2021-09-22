@@ -147,6 +147,21 @@ export const encounterAbbrevs = {
   TK: 'TK',
 };
 
+export const bosses = {
+  GRUUL_MAULGAR: 'Maulgar',
+  GRUUL: 'Gruul',
+  MAGTHERIDON: 'Magtheridon',
+  SSC_HYDROSS: 'Hydross',
+  SSC_LURKER: 'Lurker Below',
+  SSC_LEOTHERAS: 'Leotheras',
+  SSC_MOROGRIM: 'Morogrim',
+  SSC_VASHJ: 'Lady Vashj',
+  TK_ALAR: "Al'ar",
+  TK_VOIDREAVER: 'Void Reaver',
+  TK_SOLARIAN: 'Solarian',
+  TK_KAELTHAS: "Kael'thas",
+};
+
 export const attunes = {
   KARAZHAN: 'Karazhan',
   SSC: 'Serpentshrine Cavern',

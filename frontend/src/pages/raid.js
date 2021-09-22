@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Alert,
   AlertTitle,
+  Button,
+  Chip,
   CircularProgress,
   Divider,
   Grid,
@@ -14,6 +16,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import {encounters, settings, teams} from '../config/config';
@@ -32,6 +35,8 @@ import RaidCard from '../components/RaidCard';
 import {isWidthDown} from '@mui/material/Hidden/withWidth';
 import Link from '@mui/material/Link';
 import {RaidTopNav} from '../components/RaidTopNav';
+import {ExitToApp, YouTube} from '@mui/icons-material';
+import {raidTeams} from '../config/teams';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -77,10 +82,21 @@ const RaidPage = ({team, page}) => {
   const isAllRaids = raid.encounter === encounters.ALL;
   const raidNoun = isAllRaids ? 'Raids' : 'Bosses';
 
+  const allLoggedRuns = raidTeams
+    .map(
+      (raidTeam) =>
+        raidTeam.raids
+          .map((raidTeamRaids) => raidTeamRaids.loggedRuns || [])
+          .flat() || []
+    )
+    .flat();
+
   const switchToPlayer = (player) => {
     window.scrollTo(0, 0);
     history.push(`/players/${slugify(player.name)}`);
   };
+
+  const myLoggedRuns = isAllRaids ? allLoggedRuns : raid.loggedRuns;
 
   return (
     <Box>
@@ -153,7 +169,7 @@ const RaidPage = ({team, page}) => {
             </Typography>
             <Typography variant={'overline'} color={'text.secondary'}>
               &nbsp;&mdash;&nbsp; Last New Record on{' '}
-              {raid.parses.recordLastBroken}
+              {new Date(raid.parses.recordLastBroken).toLocaleDateString()}
             </Typography>
           </div>
 
@@ -218,6 +234,206 @@ const RaidPage = ({team, page}) => {
               </Link>
             </div>
           </Stack>
+        </Box>
+      )}
+
+      {myLoggedRuns && (
+        <Box pb={2}>
+          <Typography variant={'overline'} color={'primary'}>
+            Recent Runs
+          </Typography>
+
+          <TableContainer component={Paper}>
+            <Table size={'small'}>
+              <TableHead>
+                <TableRow>
+                  <TableCell align={'center'}>
+                    <Typography variant={'body2'} align={'center'}>
+                      Week
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant={'body2'}>Date</Typography>
+                  </TableCell>
+                  <TableCell
+                    align={'center'}
+                    sx={{
+                      display: {
+                        xs: 'none',
+                        lg: 'table-cell',
+                      },
+                    }}>
+                    <Typography variant={'body2'}>Kills</Typography>
+                  </TableCell>
+                  <TableCell align={'center'}>
+                    <Typography variant={'body2'}>VOD</Typography>
+                  </TableCell>
+                  <TableCell align={'center'}>
+                    <Typography variant={'body2'}>Parse</Typography>
+                  </TableCell>
+                  <TableCell
+                    align={'center'}
+                    sx={{
+                      display: {
+                        xs: 'none',
+                        md: 'table-cell',
+                      },
+                    }}>
+                    <Typography variant={'body2'}>Attendees</Typography>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {myLoggedRuns.map((run, i) => (
+                  <TableRow key={i}>
+                    <TableCell align={'center'}>
+                      <Typography variant={'caption'}>{run.week}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant={'caption'}>
+                        {new Date(run.date).toLocaleDateString()}
+                      </Typography>
+                    </TableCell>
+                    <TableCell
+                      align={'center'}
+                      sx={{
+                        display: {
+                          xs: 'none',
+                          lg: 'table-cell',
+                        },
+                      }}>
+                      <Table size={'small'}>
+                        <TableBody>
+                          {run.kills.map((kill, i) => (
+                            <TableRow key={i}>
+                              <TableCell sx={{border: 'none', maxWidth: 90}}>
+                                {kill.boss}
+                              </TableCell>
+                              <TableCell sx={{border: 'none'}}>
+                                <Grid container spacing={1}>
+                                  <Tooltip title={'Execution'}>
+                                    <Grid
+                                      item
+                                      xs={4}
+                                      sx={{textAlign: 'center'}}>
+                                      <CircularProgressWithLabel
+                                        value={kill.execution}
+                                        label={kill.execution}
+                                        size={40}
+                                        labelvariant={'caption'}
+                                        sx={{
+                                          color: getColorForScore(
+                                            kill.execution
+                                          ),
+                                        }}
+                                      />
+                                    </Grid>
+                                  </Tooltip>
+                                  <Tooltip title={'Speed'}>
+                                    <Grid
+                                      item
+                                      xs={4}
+                                      sx={{textAlign: 'center'}}>
+                                      <CircularProgressWithLabel
+                                        value={kill.speed}
+                                        label={kill.speed}
+                                        size={40}
+                                        labelvariant={'caption'}
+                                        sx={{
+                                          color: getColorForScore(kill.speed),
+                                        }}
+                                      />
+                                    </Grid>
+                                  </Tooltip>
+                                  <Tooltip title={'Time'}>
+                                    <Grid
+                                      item
+                                      xs={4}
+                                      sx={{textAlign: 'center'}}>
+                                      <CircularProgressWithLabel
+                                        value={0}
+                                        label={kill.time}
+                                        size={40}
+                                        labelvariant={'caption'}
+                                      />
+                                    </Grid>
+                                  </Tooltip>
+                                </Grid>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableCell>
+                    <TableCell align={'center'}>
+                      {run.youtubeLink && (
+                        <Typography variant={'caption'}>
+                          <Tooltip title={'View on YouTube'}>
+                            <Button
+                              size={'small'}
+                              href={run.youtubeLink}
+                              target={'_blank'}>
+                              <YouTube />
+                            </Button>
+                          </Tooltip>
+                        </Typography>
+                      )}
+                    </TableCell>
+                    <TableCell align={'center'}>
+                      <Typography variant={'caption'}>
+                        <Tooltip title={'View on Warcraft Logs'}>
+                          <Button
+                            size={'small'}
+                            href={run.warcraftLogsLink}
+                            target={'_blank'}>
+                            <ExitToApp />
+                          </Button>
+                        </Tooltip>
+                      </Typography>
+                    </TableCell>
+                    <TableCell
+                      align={'center'}
+                      sx={{
+                        display: {
+                          xs: 'none',
+                          md: 'table-cell',
+                        },
+                      }}>
+                      <Tooltip
+                        title={
+                          <div>
+                            {run.attendees.map((player, i) => {
+                              const playerData = getPlayerDataByName(player);
+                              return (
+                                <Chip
+                                  size={'small'}
+                                  sx={{
+                                    m: '2px',
+                                    borderRadius: '2px',
+                                    backgroundColor: '#333',
+                                  }}
+                                  key={i}
+                                  label={colorTextByClass(
+                                    player,
+                                    playerData?.class || 'Unknown'
+                                  )}
+                                />
+                              );
+                            })}
+                          </div>
+                        }>
+                        <Button size={'small'} color={'inherit'}>
+                          <Typography variant={'caption'}>
+                            {run.attendees.length}
+                          </Typography>
+                        </Button>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       )}
 

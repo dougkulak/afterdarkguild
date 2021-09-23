@@ -85,6 +85,13 @@ export function TeamBottomNav({team, page}) {
         <Item
           variant={'outlined'}
           size={'small'}
+          className={page.name === pages.RUNS ? classes.active : null}
+          onClick={() => gotoTeamPage(pages.RUNS)}>
+          {pages.RUNS}
+        </Item>
+        <Item
+          variant={'outlined'}
+          size={'small'}
           className={page.name === pages.APPLY ? classes.active : null}
           onClick={() => gotoTeamPage(pages.APPLY)}>
           {pages.APPLY}

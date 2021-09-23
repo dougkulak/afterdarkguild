@@ -13,6 +13,7 @@ import {settings} from './config/config';
 import AnnouncementsPage from './pages/announcements';
 import RaidPage from './pages/raid';
 import PlayerPage from './pages/player';
+import RunsPage from './pages/runs';
 
 const defaultRaidTeamData = raidTeams[0];
 const defaultPageData = raidTeamPages[0];
@@ -64,6 +65,9 @@ function App() {
             </Route>
             <Route path={'/:team/roster'}>
               <RosterPage team={currentTeam} page={currentPage} />
+            </Route>
+            <Route path={'/:team/runs'}>
+              <RunsPage team={currentTeam} page={currentPage} />
             </Route>
             <Route path={'/:team/apply'}>
               <div style={{position: 'relative'}}>

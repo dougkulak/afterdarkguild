@@ -5,6 +5,7 @@ import {
   PostAdd as ApplyIcon,
   Campaign as AnnouncementsIcon,
   Explore as RaidsIcon,
+  DirectionsRun as RunsIcon,
 } from '@mui/icons-material';
 import {encounters} from './config';
 
@@ -54,6 +55,10 @@ export const raidTeamPages = [
         encounter: encounters.TK,
       },
     ],
+  },
+  {
+    name: 'Runs',
+    icon: <RunsIcon />,
   },
   {
     name: 'Apply',

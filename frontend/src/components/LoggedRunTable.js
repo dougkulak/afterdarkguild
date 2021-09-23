@@ -15,7 +15,12 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import React from 'react';
-import {colorTextByClass, getColorForScore, slugify} from '../util';
+import {
+  colorTextByClass,
+  getColorForScore,
+  getEncounterAbbrev,
+  slugify,
+} from '../util';
 import {ExitToApp, YouTube} from '@mui/icons-material';
 import {getPlayerDataByName} from '../config/players';
 import {useHistory} from 'react-router-dom';
@@ -94,11 +99,22 @@ export function LoggedRunTable({runs}) {
           {runs.map((run, i) => (
             <TableRow key={i}>
               <TableCell align={'center'}>
-                <Typography variant={'caption'}>{run.week}</Typography>
+                <Typography variant={'h6'}>{run.week}</Typography>
               </TableCell>
               <TableCell>
+                <Typography variant={'h6'}>
+                  {getEncounterAbbrev(run.encounter)}
+                </Typography>
+
                 <Typography variant={'caption'}>
                   {new Date(run.date).toLocaleDateString()}
+                </Typography>
+
+                <Typography
+                  variant={'caption'}
+                  color={'text.secondary'}
+                  component={'div'}>
+                  {new Date(run.date).toLocaleTimeString()}
                 </Typography>
               </TableCell>
               <TableCell
@@ -109,12 +125,16 @@ export function LoggedRunTable({runs}) {
                     lg: 'table-cell',
                   },
                 }}>
-                <Table size={'small'}>
+                <Table
+                  size={'small'}
+                  sx={{backgroundColor: '#151515', borderRadius: 4}}>
                   <TableBody>
                     {run.kills.map((kill, i) => (
                       <TableRow key={i}>
-                        <TableCell sx={{border: 'none', maxWidth: 90}}>
-                          {kill.boss}
+                        <TableCell sx={{border: 'none', maxWidth: 100}}>
+                          <Typography variant={'body2'} noWrap>
+                            {kill.boss}
+                          </Typography>
                         </TableCell>
                         <TableCell sx={{border: 'none'}}>
                           <Grid container spacing={1}>

@@ -1,77 +1,17 @@
 import React from 'react';
-import {
-  Alert,
-  AlertTitle,
-  CircularProgress,
-  Divider,
-  Grid,
-  LinearProgress,
-  Paper,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material';
-import {encounters, settings, teams} from '../config/config';
-import {
-  colorTextByClass,
-  getColorForScore,
-  normalize,
-  slugify,
-  useWidth,
-} from '../util';
+import {Alert, AlertTitle, Divider, Typography} from '@mui/material';
+import {settings, teams} from '../config/config';
+import {slugify} from '../util';
 import Box from '@mui/material/Box';
 import Code from '../components/Code';
-import {useHistory, useParams} from 'react-router-dom';
-import {getPlayerDataByName, unknownPlayer} from '../config/players';
-import RaidCard from '../components/RaidCard';
-import {isWidthDown} from '@mui/material/Hidden/withWidth';
-import Link from '@mui/material/Link';
-import {RaidTopNav} from '../components/RaidTopNav';
 import {LoggedRunTable} from '../components/LoggedRunTable';
-
-function CircularProgressWithLabel(props) {
-  return (
-    <Box sx={{position: 'relative', display: 'inline-flex'}}>
-      <CircularProgress variant="determinate" {...props} />
-      <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Typography
-          variant={props.labelvariant || 'h6'}
-          component="div"
-          color="text.secondary">
-          {props.label}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
 
 const RunsPage = ({team, page}) => {
   const isAll = team.name === teams.ALL;
-  const history = useHistory();
 
   const teamLoggedRuns = team.raids
     .map((raidTeamRaids) => raidTeamRaids.loggedRuns || [])
     .flat();
-
-  const switchToPlayer = (player) => {
-    window.scrollTo(0, 0);
-    history.push(`/players/${slugify(player.name)}`);
-  };
 
   return (
     <Box>

@@ -156,6 +156,7 @@ export const bosses = {
   SSC_HYDROSS: 'Hydross',
   SSC_LURKER: 'Lurker Below',
   SSC_LEOTHERAS: 'Leotheras',
+  SSC_KARATHRESS: 'Karathress',
   SSC_MOROGRIM: 'Morogrim',
   SSC_VASHJ: 'Lady Vashj',
   TK_ALAR: "Al'ar",

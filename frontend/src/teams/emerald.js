@@ -406,16 +406,16 @@ const data = {
       encounter: encounters.SSC,
       progress: '4/6',
       parses: {
-        bestAvgExecution: 81,
+        bestAvgExecution: 92,
         bestAvgSpeed: 90,
         bestTime: '3:33',
         executionLogLink:
-          'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
+          'https://classic.warcraftlogs.com/reports/gp4x9TfnLQ1HkBGM/',
         speedLogLink:
           'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
         timeLogLink:
           'https://classic.warcraftlogs.com/reports/MpAG7XbhkNrqaJK3/',
-        recordLastBroken: '2021-09-21 20:00:00',
+        recordLastBroken: '2021-09-23 20:00:00',
       },
       strategy: <span>We just go in and kick Lady Vashj's butt.</span>,
       teams: [
@@ -426,6 +426,55 @@ const data = {
         },
       ],
       loggedRuns: [
+        {
+          week: 2,
+          date: '2021-09-23 20:00:00',
+          encounter: encounters.SSC,
+          kills: [
+            {
+              boss: bosses.SSC_KARATHRESS,
+              execution: 92,
+              speed: 82,
+              time: '4:03',
+            },
+            {
+              boss: bosses.SSC_MOROGRIM,
+              execution: 30,
+              speed: 65,
+              time: '5:47',
+            },
+          ],
+          youtubeLink: 'https://youtu.be/wvRuHL22slE',
+          warcraftLogsLink:
+            'https://classic.warcraftlogs.com/reports/gp4x9TfnLQ1HkBGM/',
+          attendees: [
+            'Cavanawz',
+            'Parasite',
+            'Werdna',
+            'Sterrek',
+            'Judgejed',
+            'Lysanderöth',
+            'Pinsir',
+            'Dreys',
+            'Brewmiser',
+            'Geeked',
+            'Econometric',
+            'Firequacker',
+            'Ishammel',
+            'Shazzamy',
+            'Tonize',
+            'Furrygsis',
+            'Eztokill',
+            'Timmyh',
+            'Skyguy',
+            'Cordulla',
+            'Euda',
+            'Enderstar',
+            'Tavlox',
+            'Murlochlair',
+            'Krashovrride',
+          ],
+        },
         {
           week: 2,
           date: '2021-09-21 20:00:00',

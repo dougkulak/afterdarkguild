@@ -404,7 +404,7 @@ const data = {
     },
     {
       encounter: encounters.SSC,
-      progress: '4/6',
+      progress: '5/6',
       parses: {
         bestAvgExecution: 92,
         bestAvgSpeed: 90,

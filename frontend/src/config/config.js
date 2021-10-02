@@ -22,6 +22,7 @@ export const classes = {
   MAGE: 'Mage',
   HUNTER: 'Hunter',
   PRIEST: 'Priest',
+  UNKNOWN: 'Unknown'
 };
 
 export const classColors = {
@@ -64,6 +65,7 @@ export const specs = {
   WARRIOR_FURY: 'Fury',
   WARRIOR_ARMS: 'Arms',
   WARRIOR_PROT: 'Prot',
+  UNKNOWN: 'Unknown'
 };
 
 export const races = {
@@ -72,6 +74,7 @@ export const races = {
   DWARF: 'Dwarf',
   DRAENEI: 'Draenei',
   GNOME: 'Gnome',
+  UNKNOWN: 'Unknown'
 };
 
 export const professions = {
